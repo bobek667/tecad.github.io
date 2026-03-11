@@ -333,7 +333,8 @@
     }
 
     .service {
-      padding: 26px;
+      padding: 0;
+      overflow: hidden;
       background: linear-gradient(180deg, #fff 0%, #fcfaf6 100%);
       transition: .2s ease;
     }
@@ -341,6 +342,18 @@
     .service:hover {
       transform: translateY(-3px);
       box-shadow: 0 18px 36px rgba(0,0,0,.1);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #e8e0d4;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-body {
+      padding: 26px;
     }
 
     .service-num {
@@ -679,51 +692,75 @@
 
         <div class="services-grid">
           <article class="card service">
-            <div class="service-num">01</div>
-            <h3>Projekty CAD 3D</h3>
-            <p>Opracowanie koncepcji i wykonanie projektów nowych maszyn i urządzeń.</p>
+            <img class="service-image" src="images/projekty-cad-3d.jpg" alt="Projekty CAD 3D" />
+            <div class="service-body">
+              <div class="service-num">01</div>
+              <h3>Projekty CAD 3D</h3>
+              <p>Opracowanie koncepcji i wykonanie projektów nowych maszyn i urządzeń.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">02</div>
-            <h3>Projekty konstrukcji</h3>
-            <p>Projekty konstrukcji nośnych, zadaszeń, wiat oraz mebli stalowych. Konstrukcje stalowe, aluminiowe i drewniane.</p>
+            <img class="service-image" src="images/projekty-konstrukcji.jpg" alt="Projekty konstrukcji" />
+            <div class="service-body">
+              <div class="service-num">02</div>
+              <h3>Projekty konstrukcji</h3>
+              <p>Projekty konstrukcji nośnych, zadaszeń, wiat oraz mebli stalowych. Konstrukcje stalowe, aluminiowe i drewniane.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">03</div>
-            <h3>Modyfikacje</h3>
-            <p>Usprawnienia i modyfikacje istniejących maszyn i urządzeń w celu poprawy wydajności oraz automatyzacji.</p>
+            <img class="service-image" src="images/modyfikacje.jpg" alt="Modyfikacje maszyn" />
+            <div class="service-body">
+              <div class="service-num">03</div>
+              <h3>Modyfikacje</h3>
+              <p>Usprawnienia i modyfikacje istniejących maszyn i urządzeń w celu poprawy wydajności oraz automatyzacji.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">04</div>
-            <h3>Dokumentacja 2D</h3>
-            <p>Wykonywanie dokumentacji wykonawczej 2D oraz digitalizacja istniejących urządzeń i części.</p>
+            <img class="service-image" src="images/dokumentacja-2d.jpg" alt="Dokumentacja 2D" />
+            <div class="service-body">
+              <div class="service-num">04</div>
+              <h3>Dokumentacja 2D</h3>
+              <p>Wykonywanie dokumentacji wykonawczej 2D oraz digitalizacja istniejących urządzeń i części.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">05</div>
-            <h3>Odtwarzanie istniejących urządzeń i części</h3>
-            <p>Na podstawie pomiarów i skanów odtwarzanie narzędzi, elementów maszyn oraz całych układów. Inżynieria wsteczna.</p>
+            <img class="service-image" src="images/odtwarzanie-czesci.jpg" alt="Odtwarzanie istniejących urządzeń i części" />
+            <div class="service-body">
+              <div class="service-num">05</div>
+              <h3>Odtwarzanie istniejących urządzeń i części</h3>
+              <p>Na podstawie pomiarów i skanów odtwarzanie narzędzi, elementów maszyn oraz całych układów. Inżynieria wsteczna.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">06</div>
-            <h3>Druk 3D</h3>
-            <p>Wykonywanie prototypów poglądowych elementów i części maszyn o maksymalnym polu roboczym 420 × 420 × 500 mm.</p>
+            <img class="service-image" src="images/druk-3d.jpg" alt="Druk 3D" />
+            <div class="service-body">
+              <div class="service-num">06</div>
+              <h3>Druk 3D</h3>
+              <p>Wykonywanie prototypów poglądowych elementów i części maszyn o maksymalnym polu roboczym 420 × 420 × 500 mm.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">07</div>
-            <h3>Rendering / Wizualizacja</h3>
-            <p>Fotorealistyczne prezentacje maszyn, urządzeń i detali w pełnych szczegółach i kolorach.</p>
+            <img class="service-image" src="images/rendering-wizualizacja.jpg" alt="Rendering i wizualizacja" />
+            <div class="service-body">
+              <div class="service-num">07</div>
+              <h3>Rendering / Wizualizacja</h3>
+              <p>Fotorealistyczne prezentacje maszyn, urządzeń i detali w pełnych szczegółach i kolorach.</p>
+            </div>
           </article>
 
           <article class="card service">
-            <div class="service-num">08</div>
-            <h3>Projekty mebli</h3>
-            <p>Projekty mebli stalowych, skrzyniowych i innych realizacji użytkowych wykonywanych indywidualnie.</p>
+            <img class="service-image" src="images/projekty-mebli.jpg" alt="Projekty mebli" />
+            <div class="service-body">
+              <div class="service-num">08</div>
+              <h3>Projekty mebli</h3>
+              <p>Projekty mebli stalowych, skrzyniowych i innych realizacji użytkowych wykonywanych indywidualnie.</p>
+            </div>
           </article>
         </div>
       </div>

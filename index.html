@@ -7,35 +7,48 @@
   <meta name="description" content="Biuro projektowe TeCAD. Projekty maszyn przemysłowych, linii produkcyjnych oraz stanowisk zrobotyzowanych." />
   <style>
     :root {
-      --bg: #f4f1ea;
-      --bg-soft: #faf8f4;
+      --bg: #efe9df;
+      --bg-soft: #f7f3ec;
       --surface: #ffffff;
+      --surface-alt: #f9f6f1;
       --text: #1f1f1f;
-      --muted: #5f5f5f;
-      --line: #ddd4c7;
-      --primary: #2f2f2f;
-      --accent: #9e7d52;
-      --accent-dark: #7d5f39;
-      --shadow: 0 12px 30px rgba(0,0,0,.08);
-      --radius: 18px;
+      --muted: #66615b;
+      --line: #ddd1c1;
+      --primary: #2b2b2b;
+      --accent: #b18a55;
+      --accent-dark: #8f6d40;
+      --shadow: 0 14px 34px rgba(0, 0, 0, .08);
+      --radius: 22px;
       --max: 1180px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(177,138,85,.08), transparent 28%),
+        linear-gradient(180deg, #f5f1ea 0%, #eee6db 100%);
       line-height: 1.6;
     }
 
-    img { max-width: 100%; display: block; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       width: min(var(--max), calc(100% - 32px));
@@ -43,60 +56,68 @@
     }
 
     .topbar {
-      background: rgba(255,255,255,.72);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(221, 212, 199, .8);
       position: sticky;
       top: 0;
-      z-index: 40;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, .82);
+      border-bottom: 1px solid rgba(221, 209, 193, .92);
     }
 
     .topbar-inner {
-      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
+      min-height: 88px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       min-width: 0;
     }
 
-    .brand-mark {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), #505050);
+    .brand-logo {
+      width: 170px;
+      max-width: 42vw;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .brand-fallback {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), #555);
       color: #fff;
-      display: grid;
-      place-items: center;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: .06em;
       box-shadow: var(--shadow);
-      flex: 0 0 auto;
     }
 
-    .brand-text {
+    .brand-copy {
       min-width: 0;
     }
 
-    .brand-title {
+    .brand-copy h1 {
       margin: 0;
-      font-size: 24px;
-      letter-spacing: .04em;
-      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.1;
+      letter-spacing: .02em;
     }
 
-    .brand-subtitle {
-      margin: 3px 0 0;
+    .brand-copy p {
+      margin: 5px 0 0;
       color: var(--muted);
-      font-size: 13px;
-      letter-spacing: .08em;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
       text-transform: uppercase;
     }
 
@@ -110,81 +131,74 @@
 
     .nav a {
       padding: 12px 16px;
-      font-size: 14px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--primary);
       border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--primary);
       transition: .2s ease;
     }
 
     .nav a:hover,
     .nav a:focus-visible {
-      background: rgba(158,125,82,.12);
+      background: rgba(177,138,85,.12);
       color: var(--accent-dark);
       outline: none;
     }
 
     .hero {
-      padding: 72px 0 44px;
+      padding: 70px 0 40px;
     }
 
     .hero-wrap {
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 28px;
+      grid-template-columns: 1.18fr .82fr;
+      gap: 24px;
       align-items: stretch;
     }
 
-    .hero-card,
-    .hero-side,
-    .service,
-    .contact-card,
-    .experience-card,
-    .form-card,
-    .footer-card {
+    .card {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .hero-card {
-      padding: 42px;
+    .hero-main {
+      padding: 44px;
       background:
-        radial-gradient(circle at top right, rgba(158,125,82,.18), transparent 32%),
-        linear-gradient(180deg, #ffffff, #f8f4ee);
+        radial-gradient(circle at top right, rgba(177,138,85,.18), transparent 30%),
+        linear-gradient(180deg, #fff 0%, #f9f5ef 100%);
     }
 
-    .eyebrow {
+    .eyebrow,
+    .mini-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(158,125,82,.1);
+      background: rgba(177,138,85,.1);
       color: var(--accent-dark);
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      margin-bottom: 18px;
     }
 
-    h1, h2, h3, h4, p { margin-top: 0; }
-
-    h1 {
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -.03em;
-      margin-bottom: 20px;
+    .hero-main h2 {
+      margin: 22px 0 18px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
     }
 
-    .hero-card p {
-      max-width: 680px;
+    .hero-main p {
+      margin: 0 0 26px;
+      max-width: 710px;
+      color: #4a4743;
       font-size: 18px;
-      color: #434343;
-      margin-bottom: 28px;
     }
 
     .hero-actions {
@@ -194,14 +208,14 @@
     }
 
     .btn {
+      min-height: 50px;
+      padding: 0 24px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
       border-radius: 999px;
-      font-weight: 700;
       border: 1px solid transparent;
+      font-weight: 700;
       transition: .2s ease;
       cursor: pointer;
     }
@@ -211,7 +225,9 @@
       color: #fff;
     }
 
-    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
 
     .btn-secondary {
       background: transparent;
@@ -219,86 +235,94 @@
       color: var(--primary);
     }
 
-    .btn-secondary:hover { background: var(--bg-soft); }
-
-    .hero-side {
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(180deg, #333, #222);
-      color: #fff;
-      overflow: hidden;
-      position: relative;
+    .btn-secondary:hover {
+      background: var(--bg-soft);
     }
 
-    .hero-side::before {
+    .hero-side {
+      padding: 30px;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(33,33,33,.96), rgba(22,22,22,.98)),
+        linear-gradient(135deg, rgba(177,138,85,.22), transparent 48%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side::after {
       content: "";
       position: absolute;
-      inset: auto -40px -40px auto;
+      right: -50px;
+      bottom: -50px;
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      background: rgba(158,125,82,.18);
-      filter: blur(2px);
+      background: rgba(177,138,85,.16);
     }
 
-    .hero-side h2 {
-      font-size: 28px;
+    .hero-side .mini-label {
       margin-bottom: 18px;
-      line-height: 1.15;
+      background: rgba(255,255,255,.08);
+      color: #ead7bc;
+    }
+
+    .hero-side h3 {
+      margin: 0 0 18px;
+      font-size: 30px;
+      line-height: 1.12;
       position: relative;
       z-index: 1;
     }
 
-    .hero-list {
+    .hero-side ul {
       list-style: none;
       padding: 0;
       margin: 0;
       display: grid;
-      gap: 12px;
+      gap: 14px;
       position: relative;
       z-index: 1;
     }
 
-    .hero-list li {
-      padding-left: 18px;
+    .hero-side li {
       position: relative;
-      color: rgba(255,255,255,.9);
+      padding-left: 20px;
+      color: rgba(255,255,255,.92);
     }
 
-    .hero-list li::before {
+    .hero-side li::before {
       content: "";
+      position: absolute;
+      left: 0;
+      top: .6em;
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--accent);
-      position: absolute;
-      left: 0;
-      top: .55em;
     }
 
-    section.section {
-      padding: 24px 0 44px;
+    section {
+      padding: 22px 0 44px;
     }
 
     .section-heading {
       display: flex;
-      align-items: end;
       justify-content: space-between;
-      gap: 20px;
+      gap: 22px;
+      align-items: end;
       margin-bottom: 22px;
     }
 
     .section-heading h2 {
-      font-size: clamp(28px, 4vw, 40px);
-      margin-bottom: 0;
+      margin: 10px 0 0;
+      font-size: clamp(28px, 4vw, 42px);
       letter-spacing: -.03em;
+      line-height: 1.05;
     }
 
     .section-heading p {
+      margin: 0;
       max-width: 560px;
-      margin-bottom: 0;
       color: var(--muted);
     }
 
@@ -310,42 +334,42 @@
 
     .service {
       padding: 26px;
-      transition: transform .2s ease, box-shadow .2s ease;
-      background: linear-gradient(180deg, #fff, #fcfaf7);
+      background: linear-gradient(180deg, #fff 0%, #fcfaf6 100%);
+      transition: .2s ease;
     }
 
     .service:hover {
       transform: translateY(-3px);
-      box-shadow: 0 16px 34px rgba(0,0,0,.1);
+      box-shadow: 0 18px 36px rgba(0,0,0,.1);
     }
 
     .service-num {
+      width: 36px;
+      height: 36px;
       display: inline-flex;
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
       align-items: center;
       justify-content: center;
-      background: rgba(158,125,82,.12);
+      border-radius: 12px;
+      background: rgba(177,138,85,.12);
       color: var(--accent-dark);
       font-weight: 700;
       margin-bottom: 18px;
     }
 
     .service h3 {
-      margin-bottom: 10px;
+      margin: 0 0 10px;
       font-size: 22px;
       line-height: 1.2;
     }
 
     .service p {
-      margin-bottom: 0;
+      margin: 0;
       color: var(--muted);
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
+      grid-template-columns: .88fr 1.12fr;
       gap: 18px;
       align-items: start;
     }
@@ -362,25 +386,23 @@
       padding: 28px;
     }
 
-    .contact-label,
-    .mini-label {
+    .contact-label {
       margin-bottom: 8px;
-      font-size: 12px;
       color: var(--accent-dark);
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       text-transform: uppercase;
     }
 
     .contact-value {
-      font-size: 26px;
-      line-height: 1.2;
       margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
     }
 
     .contact-note {
-      margin-top: 10px;
-      margin-bottom: 0;
+      margin: 10px 0 0;
       color: var(--muted);
     }
 
@@ -390,7 +412,13 @@
     }
 
     .form-card {
-      background: linear-gradient(180deg, #ffffff, #faf7f1);
+      background: linear-gradient(180deg, #fff 0%, #f8f3ec 100%);
+    }
+
+    .form-card h3 {
+      margin: 12px 0 18px;
+      font-size: 28px;
+      line-height: 1.1;
     }
 
     form {
@@ -407,19 +435,19 @@
     label {
       display: grid;
       gap: 8px;
-      font-weight: 700;
       font-size: 14px;
+      font-weight: 700;
     }
 
     input,
     textarea {
       width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
       border: 1px solid var(--line);
       background: #fff;
-      border-radius: 14px;
-      padding: 14px 16px;
-      font: inherit;
       color: var(--text);
+      font: inherit;
       outline: none;
       transition: .2s ease;
     }
@@ -427,46 +455,75 @@
     input:focus,
     textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(158,125,82,.12);
+      box-shadow: 0 0 0 4px rgba(177,138,85,.12);
     }
 
     textarea {
-      min-height: 160px;
+      min-height: 170px;
       resize: vertical;
     }
 
     .form-note {
-      margin: 6px 0 0;
+      margin: 8px 0 0;
       color: var(--muted);
       font-size: 14px;
     }
 
     .experience-card {
-      background: linear-gradient(180deg, #2f2f2f, #212121);
       color: #fff;
+      background: linear-gradient(180deg, #2b2b2b 0%, #191919 100%);
+      position: relative;
+      overflow: hidden;
     }
 
-    .experience-card h2,
+    .experience-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -90px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(177,138,85,.12);
+    }
+
+    .experience-card .mini-label {
+      background: rgba(255,255,255,.08);
+      color: #ead7bc;
+    }
+
+    .experience-card h2 {
+      margin: 14px 0 10px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.06;
+      position: relative;
+      z-index: 1;
+    }
+
     .experience-card p {
-      color: inherit;
+      margin: 0;
+      color: rgba(255,255,255,.84);
+      position: relative;
+      z-index: 1;
     }
 
     .experience-grid {
+      margin-top: 24px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px 18px;
-      margin-top: 24px;
+      position: relative;
+      z-index: 1;
     }
 
     .experience-item {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
-      padding: 16px 18px;
-      min-height: 76px;
+      min-height: 78px;
       display: flex;
       align-items: center;
       gap: 12px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
     }
 
     .experience-bullet {
@@ -485,27 +542,30 @@
       display: grid;
       grid-template-columns: 1.1fr .9fr;
       gap: 18px;
-      align-items: start;
-      background: linear-gradient(180deg, #ffffff, #f8f4ee);
+      background: linear-gradient(180deg, #fff 0%, #f7f2eb 100%);
     }
 
-    .footer-card p:last-child {
-      margin-bottom: 0;
+    .footer-card h3 {
+      margin: 12px 0 10px;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .footer-card p {
+      margin: 0 0 10px;
+      color: #44403a;
     }
 
     .copyright {
       color: var(--muted);
       font-size: 14px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     @media (max-width: 980px) {
       .hero-wrap,
       .contact-grid,
-      .footer-card {
-        grid-template-columns: 1fr;
-      }
-
+      .footer-card,
       .services-grid,
       .experience-grid,
       .field-row {
@@ -513,8 +573,8 @@
       }
 
       .section-heading {
-        align-items: start;
         flex-direction: column;
+        align-items: start;
       }
     }
 
@@ -530,21 +590,25 @@
         justify-content: center;
       }
 
+      .brand-copy {
+        display: none;
+      }
+
       .nav {
         justify-content: center;
       }
 
       .hero {
-        padding-top: 38px;
+        padding-top: 36px;
       }
 
-      .hero-card,
+      .hero-main,
       .hero-side,
+      .service,
       .contact-card,
       .form-card,
       .experience-card,
-      .footer-card,
-      .service {
+      .footer-card {
         padding: 22px;
       }
 
@@ -558,10 +622,11 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#start" aria-label="TeCAD - strona główna">
-        <div class="brand-mark">TC</div>
-        <div class="brand-text">
-          <p class="brand-title">TeCAD</p>
-          <p class="brand-subtitle">Biuro projektowe</p>
+        <img class="brand-logo" src="NOWE_LOGO_BEZ_TLA.png" alt="TeCAD logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="brand-fallback">TC</div>
+        <div class="brand-copy">
+          <h1>TeCAD</h1>
+          <p>Biuro projektowe</p>
         </div>
       </a>
 
@@ -576,9 +641,9 @@
   <main id="start">
     <section class="hero">
       <div class="container hero-wrap">
-        <article class="hero-card">
+        <article class="card hero-main">
           <div class="eyebrow">Projektowanie maszyn i urządzeń</div>
-          <h1>Projekty maszyn przemysłowych, linii produkcyjnych oraz stanowisk zrobotyzowanych.</h1>
+          <h2>Projekty maszyn przemysłowych, linii produkcyjnych oraz stanowisk zrobotyzowanych.</h2>
           <p>
             TeCAD to biuro projektowe z Rydułtów specjalizujące się w projektach CAD 3D,
             dokumentacji technicznej, inżynierii wstecznej oraz projektach konstrukcji i maszyn.
@@ -589,12 +654,10 @@
           </div>
         </article>
 
-        <aside class="hero-side" aria-label="Zakres działalności">
-          <div>
-            <div class="mini-label">Zakres działalności</div>
-            <h2>Projektowanie dla przemysłu i produkcji</h2>
-          </div>
-          <ul class="hero-list">
+        <aside class="card hero-side" aria-label="Zakres działalności">
+          <div class="mini-label">Zakres działalności</div>
+          <h3>Projektowanie dla przemysłu i produkcji</h3>
+          <ul>
             <li>Maszyny i urządzenia specjalne</li>
             <li>Linie produkcyjne i obróbcze</li>
             <li>Stanowiska zrobotyzowane</li>
@@ -604,100 +667,100 @@
       </div>
     </section>
 
-    <section class="section" id="oferta">
+    <section id="oferta">
       <div class="container">
         <div class="section-heading">
           <div>
             <div class="mini-label">Oferta</div>
             <h2>Usługi projektowe</h2>
           </div>
-          <p>Odtworzyłem pełną strukturę usług widoczną na starej stronie, w zbliżonym układzie sekcyjnym i z firmową, techniczną estetyką.</p>
+          <p>Zakres usług odtworzony z poprzedniej strony: projekty 3D, dokumentacja, modyfikacje, reverse engineering, druk 3D, rendering i projekty mebli.</p>
         </div>
 
         <div class="services-grid">
-          <article class="service">
+          <article class="card service">
             <div class="service-num">01</div>
             <h3>Projekty CAD 3D</h3>
             <p>Opracowanie koncepcji i wykonanie projektów nowych maszyn i urządzeń.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">02</div>
             <h3>Projekty konstrukcji</h3>
-            <p>Projekty konstrukcji nośnych. Projekty zadaszeń, wiat, mebli stalowych. Konstrukcje stalowe, aluminiowe, drewniane.</p>
+            <p>Projekty konstrukcji nośnych, zadaszeń, wiat oraz mebli stalowych. Konstrukcje stalowe, aluminiowe i drewniane.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">03</div>
             <h3>Modyfikacje</h3>
-            <p>Usprawnienie i modyfikacje pracujących już maszyn i urządzeń w celu np. wyeliminowania czynnika ludzkiego.</p>
+            <p>Usprawnienia i modyfikacje istniejących maszyn i urządzeń w celu poprawy wydajności oraz automatyzacji.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">04</div>
             <h3>Dokumentacja 2D</h3>
-            <p>Wykonywanie dokumentacji wykonawczej 2D oraz digitalizacja dokumentacji istniejących urządzeń.</p>
+            <p>Wykonywanie dokumentacji wykonawczej 2D oraz digitalizacja istniejących urządzeń i części.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">05</div>
             <h3>Odtwarzanie istniejących urządzeń i części</h3>
-            <p>Na podstawie pomiarów oraz skanów jesteśmy w stanie odtworzyć narzędzia, elementy maszyn czy całe maszyny. Inżynieria wsteczna.</p>
+            <p>Na podstawie pomiarów i skanów odtwarzanie narzędzi, elementów maszyn oraz całych układów. Inżynieria wsteczna.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">06</div>
             <h3>Druk 3D</h3>
-            <p>Wykonywanie poglądowych prototypów elementów i części maszyn o maksymalnym polu roboczym 420×420×500.</p>
+            <p>Wykonywanie prototypów poglądowych elementów i części maszyn o maksymalnym polu roboczym 420 × 420 × 500 mm.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">07</div>
             <h3>Rendering / Wizualizacja</h3>
-            <p>Fotorealistyczny obraz maszyny lub przedmiotu w pełnych szczegółach i kolorach.</p>
+            <p>Fotorealistyczne prezentacje maszyn, urządzeń i detali w pełnych szczegółach i kolorach.</p>
           </article>
 
-          <article class="service">
+          <article class="card service">
             <div class="service-num">08</div>
             <h3>Projekty mebli</h3>
-            <p>Projekty mebli stalowych, skrzyniowych i podobnych realizacji użytkowych.</p>
+            <p>Projekty mebli stalowych, skrzyniowych i innych realizacji użytkowych wykonywanych indywidualnie.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="kontakt">
+    <section id="kontakt">
       <div class="container">
         <div class="section-heading">
           <div>
             <div class="mini-label">Kontakt</div>
             <h2>Skontaktuj się z TeCAD</h2>
           </div>
-          <p>Sekcja kontaktowa odwzorowuje układ starej witryny: telefon, e-mail, godziny otwarcia i formularz kontaktowy w jednym miejscu.</p>
+          <p>Telefon, e-mail, godziny pracy i formularz kontaktowy zebrane w jednej sekcji, tak jak na poprzedniej stronie.</p>
         </div>
 
         <div class="contact-grid">
           <div class="contact-stack">
-            <article class="contact-card">
+            <article class="card contact-card">
               <div class="contact-label">Zadzwoń</div>
               <p class="contact-value"><a class="contact-link" href="tel:+48501301556">+48 501 301 556</a></p>
               <p class="contact-note">Kontakt telefoniczny w godzinach pracy biura.</p>
             </article>
 
-            <article class="contact-card">
+            <article class="card contact-card">
               <div class="contact-label">Napisz</div>
               <p class="contact-value"><a class="contact-link" href="mailto:biuro@tecad.pl">biuro@tecad.pl</a></p>
-              <p class="contact-note">Odpowiedź na zapytania dotyczące projektów, wycen i współpracy.</p>
+              <p class="contact-note">Zapytania projektowe, wyceny i współpraca.</p>
             </article>
 
-            <article class="contact-card">
+            <article class="card contact-card">
               <div class="contact-label">Godziny otwarcia</div>
               <p class="contact-value">Pon - Pią: 8:00 - 16:00</p>
-              <p class="contact-note">Możliwy wcześniejszy kontakt mailowy poza standardowymi godzinami.</p>
+              <p class="contact-note">Możliwy kontakt mailowy również poza standardowymi godzinami.</p>
             </article>
           </div>
 
-          <article class="form-card">
+          <article class="card form-card">
             <div class="mini-label">Formularz kontaktowy</div>
             <h3>Napisz wiadomość</h3>
             <form action="mailto:biuro@tecad.pl" method="post" enctype="text/plain">
@@ -730,18 +793,18 @@
 
               <button class="btn btn-primary" type="submit">Wyślij wiadomość</button>
             </form>
-            <p class="form-note">Na GitHub Pages formularz bez własnego backendu otworzy program pocztowy użytkownika. Aby wiadomości trafiały automatycznie do skrzynki, trzeba go podłączyć do usługi typu Formspree lub FormSubmit.</p>
+            <p class="form-note">Na GitHub Pages formularz bez backendu otwiera program pocztowy użytkownika. Żeby formularz wysyłał wiadomości automatycznie, trzeba podłączyć go do usługi typu Formspree lub FormSubmit.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projekty">
+    <section id="projekty">
       <div class="container">
-        <article class="experience-card">
+        <article class="card experience-card">
           <div class="mini-label">Doświadczenie w projektowaniu i produkcji maszyn</div>
           <h2>Projekty specjalne</h2>
-          <p>Zakres doświadczenia zgodny z treścią widoczną na dotychczasowej stronie.</p>
+          <p>Zakres doświadczenia odpowiada treściom z dotychczasowej witryny TeCAD.</p>
 
           <div class="experience-grid">
             <div class="experience-item"><span class="experience-bullet"></span><span>Frezarki CNC 3 osiowe</span></div>
@@ -764,7 +827,7 @@
 
   <footer class="footer">
     <div class="container">
-      <article class="footer-card">
+      <article class="card footer-card">
         <div>
           <div class="mini-label">Adres</div>
           <h3>TeCAD Mariusz Bielski</h3>

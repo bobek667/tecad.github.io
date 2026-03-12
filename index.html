@@ -332,7 +332,7 @@ nav{justify-content:center}
       <div>
         <h2 class="section-title" style="margin-bottom:0;">Galeria projektów</h2>
       </div>
-      <p class="gallery-note">Przy każdym odświeżeniu strony pokazywany jest losowy zestaw zdjęć z folderu <b>galeria/</b>.</p>
+      
     </div>
 
     <div class="gallery" id="gallery">
@@ -387,19 +387,100 @@ function shuffle(array){
   return copy;
 }
 
-async function loadGalleryFiles(){
-  const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${galleryFolder}`;
-  const response = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github+json' } });
-
-  if(!response.ok){
-    throw new Error('Nie udało się pobrać listy plików galerii.');
-  }
-
-  const files = await response.json();
-  return files.filter(file => {
-    const name = file.name.toLowerCase();
-    return file.type === 'file' && (name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.png') || name.endsWith('.webp'));
-  });
+function getGalleryImages(){
+  return [
+    'galeria/10osi%20(2)_Kamera_Kamera.png',
+    'galeria/10osi_render.png',
+    'galeria/11_edited.jpg',
+    'galeria/20190103_082512.jpg',
+    'galeria/20190221_115918.jpg',
+    'galeria/3%20osie%20%2B%20o%C5%9B%20uchylna.png',
+    'galeria/5-osi.JPG',
+    'galeria/5.JPG',
+    'galeria/5_osi.JPG',
+    'galeria/BIURKO.png',
+    'galeria/BIURKO_TECH_RENDER%202.png',
+    'galeria/BOSTON%205.png',
+    'galeria/B_RENDER%202.png',
+    'galeria/Bud%C5%BCetowa%20frezarka%20desktopowa.JPG',
+    'galeria/Centrum%20co%20nestingu%20z%20auto.JPG',
+    'galeria/Centrum%20co%20nestingu.JPG',
+    'galeria/DSC_0007.JPG',
+    'galeria/DSC_0057.JPG',
+    'galeria/DSC_0110.JPG',
+    'galeria/DSC_1512.JPG',
+    'galeria/FREZARKA%20DO%20ZLEW%C3%93W.JPG',
+    'galeria/Gryt_visualize_Kamera_Kamera1.png',
+    'galeria/G%C5%82owica%20oscylacyjna%20tn%C4%85ca%20-%20cutter.JPG',
+    'galeria/IMAG0053.jpg',
+    'galeria/IMG-20240302-WA0002.jpg',
+    'galeria/IMG_20190719_132021_1.jpg',
+    'galeria/IMG_20190828_090926.jpg',
+    'galeria/IMG_20190906_111643.jpg',
+    'galeria/IMG_20220622_152438.jpg',
+    'galeria/IMG_20220629_151012.jpg',
+    'galeria/IN%C5%BBYNIERIA%20WSTECZNA.jpg',
+    'galeria/KAWOWY_G.7.jpg',
+    'galeria/Klejenie%20luster%20i%20monta%C5%BC%20stolik%C3%B3w.JPG',
+    'galeria/KuchniaNowa8%20(2)_Kamera_Kamera3.jpg',
+    'galeria/L.png',
+    'galeria/LINIA_5000.png',
+    'galeria/LOZECZKO_1.5.jpg',
+    'galeria/LOZECZKO_2.4.jpg',
+    'galeria/Laser%20FIBER%204kW.JPG',
+    'galeria/Laser%20co2.png',
+    'galeria/LaserEcov3_VISUALIZE%20(2).jpg',
+    'galeria/Linia%20do%20pakietowania.JPG',
+    'galeria/Linia%20do%20pakowania%20mebli%20tapicerowanych.JPG',
+    'galeria/Linia%20wierc%C4%85ca.JPG',
+    'galeria/MAK_1.JPG',
+    'galeria/MODU%C5%81%20WCISKANIA%20USZCZELKI.JPG',
+    'galeria/Mak_1.png',
+    'galeria/Meble%20tapicerowane.jpg',
+    'galeria/PANAMA.12.png',
+    'galeria/POSTUMENTY%20ROBOT%C3%93W.JPG',
+    'galeria/PROJEKT%20-%20DTF2922AR%20-%20Visualize%20(2).png',
+    'galeria/PRZENOSNIK_KOLKA_1920x1080_MAX.JPG',
+    'galeria/PRZENOSNIK_ROLKOWY_PNG.png',
+    'galeria/PRZENOSNIK_ROLK_1920x1080_MAX.JPG',
+    'galeria/Ploter%20frezuj%C4%85cy%203%20osiowy.JPG',
+    'galeria/Powr%C3%B3t%20z%20okleiniarki.JPG',
+    'galeria/Prasa%20do%20klejenia%20na%20zimno.png',
+    'galeria/R1.JPG',
+    'galeria/R1_bez_tla.png',
+    'galeria/ROLKOWY5000.png',
+    'galeria/STANOWISKA.png',
+    'galeria/STANOWISKO%20OBR%C3%93BKI%20DRZWI.JPG',
+    'galeria/STOLIK_RENDER%202.png',
+    'galeria/STOL_DO_PAKOWANIA.JPG',
+    'galeria/STOL_V.jpg',
+    'galeria/SZAFA_1_RENDER_2_Kamera_Kamera%203.png',
+    'galeria/SZAFKA_STOPKI.jpg',
+    'galeria/SZAFKA_STOPKI_OST.png',
+    'galeria/Stanowisko%20pakowania.JPG',
+    'galeria/St%C3%B3%C5%82%20krzy%C5%BCowy_edited.jpg',
+    'galeria/Tor%20robota.JPG',
+    'galeria/Untitled2.jpg',
+    'galeria/Widok%201_2.jpg',
+    'galeria/Widok%203_1.jpg',
+    'galeria/Widok%203_1_edited.jpg',
+    'galeria/Widok%203_2.jpg',
+    'galeria/Widok%204_1.jpg',
+    'galeria/Widok%204_1_edited.jpg',
+    'galeria/Widok%205_1.jpg',
+    'galeria/Widok%206_1.jpg',
+    'galeria/Zgrzewarka.JPG',
+    'galeria/Zlecenie_nr_4.jpg',
+    'galeria/feba_1.png',
+    'galeria/laser.JPG',
+    'galeria/linia%20do%20luster.JPG',
+    'galeria/r1-s.JPG',
+    'galeria/r5_4.JPG',
+    'galeria/render.JPG',
+    'galeria/render.png',
+    'galeria/tecad%20baner.JPG',
+    'galeria/wznosz%C4%85cy_tecad.JPG'
+  ];
 }
 
 async function buildGallery(){
@@ -408,33 +489,36 @@ async function buildGallery(){
 
   gallery.innerHTML = '<div class="gallery-loading">Ładowanie galerii…</div>';
 
-  try {
-    const files = await loadGalleryFiles();
+  const files = getGalleryImages();
 
-    if(!files.length){
-      gallery.innerHTML = '<div class="gallery-empty">Brak zdjęć w folderze <b>galeria/</b>.</div>';
-      return;
-    }
+  if(!files.length){
+    gallery.innerHTML = '<div class="gallery-empty">Brak zdjęć w folderze <b>galeria/</b>.</div>';
+    return;
+  }
 
-    const selected = shuffle(files).slice(0, galleryCount);
-    gallery.innerHTML = '';
+  const selected = shuffle(files).slice(0, galleryCount);
+  gallery.innerHTML = '';
 
-    selected.forEach((file, index) => {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'gallery-item';
+  selected.forEach((src, index) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gallery-item';
 
-      const img = document.createElement('img');
-      img.src = file.download_url;
-      img.alt = 'Galeria projektu ' + (index + 1);
-      img.draggable = false;
-      img.oncontextmenu = () => false;
-      img.onclick = () => openLightbox(file.download_url);
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Galeria projektu ' + (index + 1);
+    img.draggable = false;
+    img.oncontextmenu = () => false;
+    img.onclick = () => openLightbox(src);
+    img.onerror = () => {
+      wrapper.remove();
+    };
 
-      wrapper.appendChild(img);
-      gallery.appendChild(wrapper);
-    });
-  } catch (error) {
-    gallery.innerHTML = '<div class="gallery-empty">Nie udało się załadować galerii. Sprawdź połączenie albo odśwież stronę.</div>';
+    wrapper.appendChild(img);
+    gallery.appendChild(wrapper);
+  });
+
+  if(!gallery.children.length){
+    gallery.innerHTML = '<div class="gallery-empty">Nie udało się załadować zdjęć galerii. Sprawdź nazwy plików w folderze <b>galeria/</b>.</div>';
   }
 }
 

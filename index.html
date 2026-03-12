@@ -48,7 +48,7 @@ user-select:none;
 header{
 position:sticky;
 top:0;
-background:rgba(255,255,255,.9);
+background:rgba(255,255,255,.92);
 backdrop-filter:blur(8px);
 border-bottom:1px solid var(--line);
 z-index:100;
@@ -198,6 +198,7 @@ border-radius:14px;
 background:#ddd;
 box-shadow:var(--shadow);
 cursor:pointer;
+min-height:240px;
 }
 
 .gallery-item img{
@@ -209,18 +210,6 @@ transition:.25s;
 
 .gallery-item:hover img{
 transform:scale(1.04);
-}
-
-.gallery-caption{
-position:absolute;
-left:0;
-right:0;
-bottom:0;
-padding:14px 16px;
-background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));
-color:#fff;
-font-size:14px;
-font-weight:bold;
 }
 
 .gallery-empty{
@@ -478,7 +467,7 @@ const galleryImages = [
   "galeria/Powrót z okleiniarki.JPG",
   "galeria/Prasa do klejenia na zimno.png",
   "galeria/R1.JPG",
-  "galeria/R1_bez tla.png",
+  "galeria/R1_bez_tla.png",
   "galeria/ROLKOWY5000.png",
   "galeria/STANOWISKA.png",
   "galeria/STANOWISKO OBRÓBKI DRZWI.JPG",
@@ -524,15 +513,15 @@ function shuffle(array){
   return copy;
 }
 
-function safeSrc(path){
-  return encodeURI(path);
+function encodePath(path){
+  return path.split('/').map(part => encodeURIComponent(part)).join('/');
 }
 
 function buildGallery(){
-  const gallery = document.getElementById("gallery");
+  const gallery = document.getElementById('gallery');
   if(!gallery) return;
 
-  gallery.innerHTML = "";
+  gallery.innerHTML = '';
 
   if(!galleryImages.length){
     gallery.innerHTML = '<div class="gallery-empty">Brak zdjęć w galerii.</div>';
@@ -542,48 +531,46 @@ function buildGallery(){
   const randomImages = shuffle(galleryImages).slice(0, galleryCount);
 
   randomImages.forEach((src, index) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "gallery-item";
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gallery-item';
 
-    const img = document.createElement("img");
-    img.src = safeSrc(src);
-    img.alt = "Zdjęcie galerii " + (index + 1);
+    const img = document.createElement('img');
+    img.src = encodePath(src);
+    img.alt = 'Galeria projektu ' + (index + 1);
     img.draggable = false;
     img.oncontextmenu = () => false;
     img.onclick = () => openLightbox(src);
-
-    const caption = document.createElement("div");
-    caption.className = "gallery-caption";
-    caption.textContent = src.split("/").pop();
+    img.onerror = () => {
+      wrapper.remove();
+    };
 
     wrapper.appendChild(img);
-    wrapper.appendChild(caption);
     gallery.appendChild(wrapper);
   });
 }
 
 function openLightbox(src){
-  const box = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-  img.src = safeSrc(src);
-  box.style.display = "flex";
-  document.body.style.overflow = "hidden";
+  const box = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = encodePath(src);
+  box.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox(){
-  document.getElementById("lightbox").style.display = "none";
-  document.getElementById("lightbox-img").src = "";
-  document.body.style.overflow = "";
+  document.getElementById('lightbox').style.display = 'none';
+  document.getElementById('lightbox-img').src = '';
+  document.body.style.overflow = '';
 }
 
-document.addEventListener("contextmenu", function(e){
-  if(e.target.tagName === "IMG"){
+document.addEventListener('contextmenu', function(e){
+  if(e.target.tagName === 'IMG'){
     e.preventDefault();
   }
 });
 
-document.addEventListener("dragstart", function(e){
-  if(e.target.tagName === "IMG"){
+document.addEventListener('dragstart', function(e){
+  if(e.target.tagName === 'IMG'){
     e.preventDefault();
   }
 });

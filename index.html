@@ -7,7 +7,6 @@
 <meta name="description" content="TeCAD - projekty CAD 3D, projektowanie maszyn, dokumentacja techniczna i konstrukcje przemysłowe.">
 <meta name="keywords" content="TeCAD, projektowanie maszyn, CAD 3D, dokumentacja techniczna, konstrukcje przemysłowe, Rydułtowy">
 <meta name="robots" content="index, follow">
-
 <style>
 :root{
 --accent:#b18a55;
@@ -21,220 +20,48 @@
 --radius:20px;
 --max:1180px;
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:linear-gradient(180deg,#f5f1ea,#eee6db);
-color:var(--text);
-line-height:1.6;
-}
-
-.container{
-width:min(var(--max),calc(100% - 32px));
-margin:auto;
-}
-
-img{
-max-width:100%;
-display:block;
-user-select:none;
--webkit-user-drag:none;
-}
-
-header{
-position:sticky;
-top:0;
-background:rgba(255,255,255,.92);
-backdrop-filter:blur(8px);
-border-bottom:1px solid var(--line);
-z-index:100;
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-min-height:80px;
-gap:20px;
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f5f1ea,#eee6db);color:var(--text);line-height:1.6}
+.container{width:min(var(--max),calc(100% - 32px));margin:auto}
+img{max-width:100%;display:block;user-select:none;-webkit-user-drag:none}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:100}
+.topbar{display:flex;justify-content:space-between;align-items:center;min-height:80px;gap:20px}
+.brand{display:flex;align-items:center;gap:14px}
 .brand img{width:160px}
-
-nav{
-display:flex;
-flex-wrap:wrap;
-justify-content:flex-end;
-}
-
-nav a{
-margin-left:10px;
-padding:10px 16px;
-border-radius:999px;
-font-weight:bold;
-text-transform:uppercase;
-font-size:13px;
-letter-spacing:.08em;
-text-decoration:none;
-color:var(--text);
-}
-
+nav{display:flex;flex-wrap:wrap;justify-content:flex-end}
+nav a{margin-left:10px;padding:10px 16px;border-radius:999px;font-weight:bold;text-transform:uppercase;font-size:13px;letter-spacing:.08em}
 nav a:hover{background:#eee}
-
 .hero{padding:60px 0 40px}
-
-.hero-grid{
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:24px;
-}
-
-.card{
-background:var(--surface);
-border-radius:var(--radius);
-border:1px solid var(--line);
-box-shadow:var(--shadow);
-padding:34px;
-}
-
-.hero h1{
-font-size:44px;
-line-height:1.05;
-margin:10px 0 16px;
-}
-
-.btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:12px 22px;
-border-radius:999px;
-font-weight:bold;
-border:none;
-cursor:pointer;
-text-decoration:none;
-}
-
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:var(--accent-dark)}
-
-section{padding:30px 0}
-.section-title{margin-bottom:20px}
-
-.services{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:18px;
-}
-
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);padding:34px}
+.hero h1{font-size:44px;line-height:1.05;margin:10px 0 16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:999px;font-weight:bold;border:none;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-dark)}
+section{padding:30px 0}.section-title{margin-bottom:20px}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .service{padding:0;overflow:hidden}
-
-.service img{
-height:220px;
-width:100%;
-object-fit:cover;
-border-bottom:1px solid var(--line);
-cursor:pointer;
-transition:.25s;
-}
-
+.service img{height:220px;width:100%;object-fit:cover;border-bottom:1px solid var(--line);cursor:pointer;transition:.25s}
 .service img:hover{transform:scale(1.02)}
 .service-body{padding:22px}
-
-.gallery-header{
-display:flex;
-justify-content:space-between;
-align-items:end;
-gap:20px;
-margin-bottom:20px;
-}
-
-.gallery-note{
-margin:0;
-color:var(--muted);
-max-width:640px;
-}
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-}
-
-.gallery-item{
-position:relative;
-overflow:hidden;
-border-radius:14px;
-background:#ddd;
-box-shadow:var(--shadow);
-cursor:pointer;
-min-height:240px;
-}
-
-.gallery-item img{
-width:100%;
-height:240px;
-object-fit:cover;
-transition:.25s;
-}
-
+.service-body h3{margin:0 0 8px}
+.service-body p{margin:0;color:var(--muted)}
+.gallery-header{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gallery-item{position:relative;overflow:hidden;border-radius:14px;background:#ddd;box-shadow:var(--shadow);cursor:pointer;min-height:240px}
+.gallery-item img{width:100%;height:240px;object-fit:cover;transition:.25s}
 .gallery-item:hover img{transform:scale(1.04)}
-
-.gallery-empty,
-.gallery-loading{
-padding:24px;
-border:1px dashed var(--line);
-border-radius:14px;
-color:var(--muted);
-background:rgba(255,255,255,.55);
-grid-column:1 / -1;
-}
-
-.lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.92);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:2000;
-padding:20px;
-cursor:pointer;
-}
-
-.lightbox img{
-max-width:90%;
-max-height:85%;
-border-radius:10px;
-}
-
-footer{padding:40px 0}
-
-.footer-card{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-@media(max-width:900px){
-.hero-grid,.services,.gallery,.footer-card{grid-template-columns:1fr}
-.topbar{flex-direction:column;padding:12px 0}
-nav{justify-content:center}
-.gallery-header{flex-direction:column;align-items:flex-start}
-}
+.gallery-empty,.gallery-loading{padding:24px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);background:rgba(255,255,255,.55);grid-column:1/-1}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+.lightbox.open{display:flex}
+.lightbox-content{max-width:92vw;max-height:88vh;display:flex;align-items:center;justify-content:center}
+.lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+footer{padding:40px 0}.footer-card{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:900px){.hero-grid,.services,.gallery,.footer-card{grid-template-columns:1fr}.topbar{flex-direction:column;padding:12px 0}nav{justify-content:center}.gallery-header{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="container topbar">
     <div class="brand">
@@ -248,7 +75,6 @@ nav{justify-content:center}
     </nav>
   </div>
 </header>
-
 <main>
 <section class="hero">
   <div class="container hero-grid">
@@ -258,7 +84,6 @@ nav{justify-content:center}
       <p>Biuro projektowe TeCAD z Rydułtów specjalizujące się w projektowaniu CAD 3D, dokumentacji technicznej oraz konstrukcjach przemysłowych.</p>
       <a class="btn btn-primary" href="#kontakt">Skontaktuj się</a>
     </div>
-
     <div class="card">
       <h3>Zakres działalności</h3>
       <ul>
@@ -270,46 +95,45 @@ nav{justify-content:center}
     </div>
   </div>
 </section>
-
 <section id="oferta">
   <div class="container">
     <h2 class="section-title">Usługi projektowe</h2>
     <div class="services">
       <div class="card service">
-        <img src="projekty-cad-3d.jpg" alt="Projekty CAD 3D" onclick="openLightbox(this.src)" oncontextmenu="return false;" draggable="false">
-        <div class="service-body">
-          <h3>Projekty CAD 3D</h3>
-          <p>Projektowanie nowych maszyn i urządzeń.</p>
-        </div>
+        <img src="projekty-cad-3d.jpg" alt="Projekty CAD 3D" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Projekty CAD 3D</h3><p>Projektowanie nowych maszyn i urządzeń.</p></div>
       </div>
-
       <div class="card service">
-        <img src="projekty-konstrukcji.jpg" alt="Projekty konstrukcji" onclick="openLightbox(this.src)" oncontextmenu="return false;" draggable="false">
-        <div class="service-body">
-          <h3>Projekty konstrukcji</h3>
-          <p>Konstrukcje stalowe i projekty techniczne.</p>
-        </div>
+        <img src="projekty-konstrukcji.jpg" alt="Projekty konstrukcji" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Projekty konstrukcji</h3><p>Konstrukcje stalowe i projekty techniczne.</p></div>
       </div>
-
       <div class="card service">
-        <img src="modyfikacje.jpg" alt="Modyfikacje" onclick="openLightbox(this.src)" oncontextmenu="return false;" draggable="false">
-        <div class="service-body">
-          <h3>Modyfikacje</h3>
-          <p>Modernizacja i usprawnianie maszyn.</p>
-        </div>
+        <img src="modyfikacje.jpg" alt="Modyfikacje" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Modyfikacje</h3><p>Modernizacja i usprawnianie maszyn.</p></div>
       </div>
-
       <div class="card service">
-        <img src="dokumentacja-2d.jpg" alt="Dokumentacja 2D" onclick="openLightbox(this.src)" oncontextmenu="return false;" draggable="false">
-        <div class="service-body">
-          <h3>Dokumentacja 2D</h3>
-          <p>Dokumentacja wykonawcza i techniczna.</p>
-        </div>
+        <img src="dokumentacja-2d.jpg" alt="Dokumentacja 2D" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Dokumentacja 2D</h3><p>Dokumentacja wykonawcza i techniczna.</p></div>
+      </div>
+      <div class="card service">
+        <img src="odtwarzanie-czesci.jpg" alt="Odtwarzanie części" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Odtwarzanie istniejących urządzeń i części</h3><p>Inżynieria wsteczna na podstawie pomiarów i skanów.</p></div>
+      </div>
+      <div class="card service">
+        <img src="rendering-wizualizacja.jpg" alt="Rendering i wizualizacja" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Rendering / Wizualizacja</h3><p>Fotorealistyczne prezentacje projektów, urządzeń i detali.</p></div>
+      </div>
+      <div class="card service">
+        <img src="projekty-mebli.jpg" alt="Projekty mebli" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Projekty mebli</h3><p>Projekty mebli użytkowych, technicznych i specjalnych.</p></div>
+      </div>
+      <div class="card service">
+        <img src="dokumentacja-2d.jpg" alt="Dokumentacja i wdrożenia" onclick="openLightbox(this.src, event)" oncontextmenu="return false;" draggable="false">
+        <div class="service-body"><h3>Dokumentacja i wdrożenia</h3><p>Wsparcie projektowe od koncepcji po dokumentację techniczną.</p></div>
       </div>
     </div>
   </div>
 </section>
-
 <section id="projekty">
   <div class="container">
     <h2 class="section-title">Projekty specjalne</h2>
@@ -325,26 +149,19 @@ nav{justify-content:center}
     </div>
   </div>
 </section>
-
 <section id="galeria">
   <div class="container">
     <div class="gallery-header">
-      <div>
-        <h2 class="section-title" style="margin-bottom:0;">Galeria projektów</h2>
-      </div>
-      
+      <div><h2 class="section-title" style="margin-bottom:0;">Galeria projektów</h2></div>
     </div>
-
-    <div class="gallery" id="gallery">
-      <div class="gallery-loading">Ładowanie galerii…</div>
-    </div>
+    <div class="gallery" id="gallery"><div class="gallery-loading">Ładowanie galerii…</div></div>
   </div>
-
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" alt="Powiększone zdjęcie">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" alt="Powiększone zdjęcie">
+    </div>
   </div>
 </section>
-
 <section id="kontakt">
   <div class="container">
     <h2 class="section-title">Kontakt</h2>
@@ -356,196 +173,51 @@ nav{justify-content:center}
   </div>
 </section>
 </main>
-
 <footer>
   <div class="container">
     <div class="card footer-card">
-      <div>
-        <h3>TeCAD Mariusz Bielski</h3>
-        <p>ul. Wróblewskiego 25D<br>44-280 Rydułtowy</p>
-      </div>
-      <div>
-        <p>NIP: 639-189-87-40<br>REGON: 520715446</p>
-        <p>© 2025 TeCAD</p>
-      </div>
+      <div><h3>TeCAD Mariusz Bielski</h3><p>ul. Wróblewskiego 25D<br>44-280 Rydułtowy</p></div>
+      <div><p>NIP: 639-189-87-40<br>REGON: 520715446</p><p>© 2025 TeCAD</p></div>
     </div>
   </div>
 </footer>
-
 <script>
-const repoOwner = 'bobek667';
-const repoName = 'tecad.github.io';
-const galleryFolder = 'galeria';
 const galleryCount = 12;
-
-function shuffle(array){
-  const copy = [...array];
-  for(let i = copy.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
 function getGalleryImages(){
   return [
-    'galeria/10osi%20(2)_Kamera_Kamera.png',
-    'galeria/10osi_render.png',
-    'galeria/11_edited.jpg',
-    'galeria/20190103_082512.jpg',
-    'galeria/20190221_115918.jpg',
-    'galeria/3%20osie%20%2B%20o%C5%9B%20uchylna.png',
-    'galeria/5-osi.JPG',
-    'galeria/5.JPG',
-    'galeria/5_osi.JPG',
-    'galeria/BIURKO.png',
-    'galeria/BIURKO_TECH_RENDER%202.png',
-    'galeria/BOSTON%205.png',
-    'galeria/B_RENDER%202.png',
-    'galeria/Bud%C5%BCetowa%20frezarka%20desktopowa.JPG',
-    'galeria/Centrum%20co%20nestingu%20z%20auto.JPG',
-    'galeria/Centrum%20co%20nestingu.JPG',
-    'galeria/DSC_0007.JPG',
-    'galeria/DSC_0057.JPG',
-    'galeria/DSC_0110.JPG',
-    'galeria/DSC_1512.JPG',
-    'galeria/FREZARKA%20DO%20ZLEW%C3%93W.JPG',
-    'galeria/Gryt_visualize_Kamera_Kamera1.png',
-    'galeria/G%C5%82owica%20oscylacyjna%20tn%C4%85ca%20-%20cutter.JPG',
-    'galeria/IMAG0053.jpg',
-    'galeria/IMG-20240302-WA0002.jpg',
-    'galeria/IMG_20190719_132021_1.jpg',
-    'galeria/IMG_20190828_090926.jpg',
-    'galeria/IMG_20190906_111643.jpg',
-    'galeria/IMG_20220622_152438.jpg',
-    'galeria/IMG_20220629_151012.jpg',
-    'galeria/IN%C5%BBYNIERIA%20WSTECZNA.jpg',
-    'galeria/KAWOWY_G.7.jpg',
-    'galeria/Klejenie%20luster%20i%20monta%C5%BC%20stolik%C3%B3w.JPG',
-    'galeria/KuchniaNowa8%20(2)_Kamera_Kamera3.jpg',
-    'galeria/L.png',
-    'galeria/LINIA_5000.png',
-    'galeria/LOZECZKO_1.5.jpg',
-    'galeria/LOZECZKO_2.4.jpg',
-    'galeria/Laser%20FIBER%204kW.JPG',
-    'galeria/Laser%20co2.png',
-    'galeria/LaserEcov3_VISUALIZE%20(2).jpg',
-    'galeria/Linia%20do%20pakietowania.JPG',
-    'galeria/Linia%20do%20pakowania%20mebli%20tapicerowanych.JPG',
-    'galeria/Linia%20wierc%C4%85ca.JPG',
-    'galeria/MAK_1.JPG',
-    'galeria/MODU%C5%81%20WCISKANIA%20USZCZELKI.JPG',
-    'galeria/Mak_1.png',
-    'galeria/Meble%20tapicerowane.jpg',
-    'galeria/PANAMA.12.png',
-    'galeria/POSTUMENTY%20ROBOT%C3%93W.JPG',
-    'galeria/PROJEKT%20-%20DTF2922AR%20-%20Visualize%20(2).png',
-    'galeria/PRZENOSNIK_KOLKA_1920x1080_MAX.JPG',
-    'galeria/PRZENOSNIK_ROLKOWY_PNG.png',
-    'galeria/PRZENOSNIK_ROLK_1920x1080_MAX.JPG',
-    'galeria/Ploter%20frezuj%C4%85cy%203%20osiowy.JPG',
-    'galeria/Powr%C3%B3t%20z%20okleiniarki.JPG',
-    'galeria/Prasa%20do%20klejenia%20na%20zimno.png',
-    'galeria/R1.JPG',
-    'galeria/R1_bez_tla.png',
-    'galeria/ROLKOWY5000.png',
-    'galeria/STANOWISKA.png',
-    'galeria/STANOWISKO%20OBR%C3%93BKI%20DRZWI.JPG',
-    'galeria/STOLIK_RENDER%202.png',
-    'galeria/STOL_DO_PAKOWANIA.JPG',
-    'galeria/STOL_V.jpg',
-    'galeria/SZAFA_1_RENDER_2_Kamera_Kamera%203.png',
-    'galeria/SZAFKA_STOPKI.jpg',
-    'galeria/SZAFKA_STOPKI_OST.png',
-    'galeria/Stanowisko%20pakowania.JPG',
-    'galeria/St%C3%B3%C5%82%20krzy%C5%BCowy_edited.jpg',
-    'galeria/Tor%20robota.JPG',
-    'galeria/Untitled2.jpg',
-    'galeria/Widok%201_2.jpg',
-    'galeria/Widok%203_1.jpg',
-    'galeria/Widok%203_1_edited.jpg',
-    'galeria/Widok%203_2.jpg',
-    'galeria/Widok%204_1.jpg',
-    'galeria/Widok%204_1_edited.jpg',
-    'galeria/Widok%205_1.jpg',
-    'galeria/Widok%206_1.jpg',
-    'galeria/Zgrzewarka.JPG',
-    'galeria/Zlecenie_nr_4.jpg',
-    'galeria/feba_1.png',
-    'galeria/laser.JPG',
-    'galeria/linia%20do%20luster.JPG',
-    'galeria/r1-s.JPG',
-    'galeria/r5_4.JPG',
-    'galeria/render.JPG',
-    'galeria/render.png',
-    'galeria/tecad%20baner.JPG',
-    'galeria/wznosz%C4%85cy_tecad.JPG'
+    'galeria/10osi%20(2)_Kamera_Kamera.png','galeria/10osi_render.png','galeria/11_edited.jpg','galeria/20190103_082512.jpg','galeria/20190221_115918.jpg','galeria/3%20osie%20%2B%20o%C5%9B%20uchylna.png','galeria/5-osi.JPG','galeria/5.JPG','galeria/5_osi.JPG','galeria/BIURKO.png','galeria/BIURKO_TECH_RENDER%202.png','galeria/BOSTON%205.png','galeria/B_RENDER%202.png','galeria/Bud%C5%BCetowa%20frezarka%20desktopowa.JPG','galeria/Centrum%20co%20nestingu%20z%20auto.JPG','galeria/Centrum%20co%20nestingu.JPG','galeria/DSC_0007.JPG','galeria/DSC_0057.JPG','galeria/DSC_0110.JPG','galeria/DSC_1512.JPG','galeria/FREZARKA%20DO%20ZLEW%C3%93W.JPG','galeria/Gryt_visualize_Kamera_Kamera1.png','galeria/G%C5%82owica%20oscylacyjna%20tn%C4%85ca%20-%20cutter.JPG','galeria/IMAG0053.jpg','galeria/IMG-20240302-WA0002.jpg','galeria/IMG_20190719_132021_1.jpg','galeria/IMG_20190828_090926.jpg','galeria/IMG_20190906_111643.jpg','galeria/IMG_20220622_152438.jpg','galeria/IMG_20220629_151012.jpg','galeria/IN%C5%BBYNIERIA%20WSTECZNA.jpg','galeria/KAWOWY_G.7.jpg','galeria/Klejenie%20luster%20i%20monta%C5%BC%20stolik%C3%B3w.JPG','galeria/KuchniaNowa8%20(2)_Kamera_Kamera3.jpg','galeria/L.png','galeria/LINIA_5000.png','galeria/LOZECZKO_1.5.jpg','galeria/LOZECZKO_2.4.jpg','galeria/Laser%20FIBER%204kW.JPG','galeria/Laser%20co2.png','galeria/LaserEcov3_VISUALIZE%20(2).jpg','galeria/Linia%20do%20pakietowania.JPG','galeria/Linia%20do%20pakowania%20mebli%20tapicerowanych.JPG','galeria/Linia%20wierc%C4%85ca.JPG','galeria/MAK_1.JPG','galeria/MODU%C5%81%20WCISKANIA%20USZCZELKI.JPG','galeria/Mak_1.png','galeria/Meble%20tapicerowane.jpg','galeria/PANAMA.12.png','galeria/POSTUMENTY%20ROBOT%C3%93W.JPG','galeria/PROJEKT%20-%20DTF2922AR%20-%20Visualize%20(2).png','galeria/PRZENOSNIK_KOLKA_1920x1080_MAX.JPG','galeria/PRZENOSNIK_ROLKOWY_PNG.png','galeria/PRZENOSNIK_ROLK_1920x1080_MAX.JPG','galeria/Ploter%20frezuj%C4%85cy%203%20osiowy.JPG','galeria/Powr%C3%B3t%20z%20okleiniarki.JPG','galeria/Prasa%20do%20klejenia%20na%20zimno.png','galeria/R1.JPG','galeria/R1_bez_tla.png','galeria/ROLKOWY5000.png','galeria/STANOWISKA.png','galeria/STANOWISKO%20OBR%C3%93BKI%20DRZWI.JPG','galeria/STOLIK_RENDER%202.png','galeria/STOL_DO_PAKOWANIA.JPG','galeria/STOL_V.jpg','galeria/SZAFA_1_RENDER_2_Kamera_Kamera%203.png','galeria/SZAFKA_STOPKI.jpg','galeria/SZAFKA_STOPKI_OST.png','galeria/Stanowisko%20pakowania.JPG','galeria/St%C3%B3%C5%82%20krzy%C5%BCowy_edited.jpg','galeria/Tor%20robota.JPG','galeria/Untitled2.jpg','galeria/Widok%201_2.jpg','galeria/Widok%203_1.jpg','galeria/Widok%203_1_edited.jpg','galeria/Widok%203_2.jpg','galeria/Widok%204_1.jpg','galeria/Widok%204_1_edited.jpg','galeria/Widok%205_1.jpg','galeria/Widok%206_1.jpg','galeria/Zgrzewarka.JPG','galeria/Zlecenie_nr_4.jpg','galeria/feba_1.png','galeria/laser.JPG','galeria/linia%20do%20luster.JPG','galeria/r1-s.JPG','galeria/r5_4.JPG','galeria/render.JPG','galeria/render.png','galeria/tecad%20baner.JPG','galeria/wznosz%C4%85cy_tecad.JPG'
   ];
 }
-
-async function buildGallery(){
-  const gallery = document.getElementById('gallery');
+function shuffle(array){const copy=[...array];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
+function buildGallery(){
+  const gallery=document.getElementById('gallery');
   if(!gallery) return;
-
-  gallery.innerHTML = '<div class="gallery-loading">Ładowanie galerii…</div>';
-
-  const files = getGalleryImages();
-
-  if(!files.length){
-    gallery.innerHTML = '<div class="gallery-empty">Brak zdjęć w folderze <b>galeria/</b>.</div>';
-    return;
-  }
-
-  const selected = shuffle(files).slice(0, galleryCount);
-  gallery.innerHTML = '';
-
-  selected.forEach((src, index) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'gallery-item';
-
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = 'Galeria projektu ' + (index + 1);
-    img.draggable = false;
-    img.oncontextmenu = () => false;
-    img.onclick = () => openLightbox(src);
-    img.onerror = () => {
-      wrapper.remove();
-    };
-
+  gallery.innerHTML='';
+  const files=getGalleryImages();
+  if(!files.length){gallery.innerHTML='<div class="gallery-empty">Brak zdjęć w folderze <b>galeria/</b>.</div>';return;}
+  const selected=shuffle(files).slice(0,galleryCount);
+  selected.forEach((src,index)=>{
+    const wrapper=document.createElement('div');
+    wrapper.className='gallery-item';
+    const img=document.createElement('img');
+    img.src=src;
+    img.alt='Galeria projektu '+(index+1);
+    img.loading='lazy';
+    img.draggable=false;
+    img.oncontextmenu=()=>false;
+    img.onclick=(event)=>openLightbox(src,event);
+    img.onerror=()=>wrapper.remove();
     wrapper.appendChild(img);
     gallery.appendChild(wrapper);
   });
-
-  if(!gallery.children.length){
-    gallery.innerHTML = '<div class="gallery-empty">Nie udało się załadować zdjęć galerii. Sprawdź nazwy plików w folderze <b>galeria/</b>.</div>';
-  }
+  setTimeout(()=>{if(!gallery.children.length){gallery.innerHTML='<div class="gallery-empty">Nie udało się załadować zdjęć galerii. Sprawdź nazwy plików w folderze <b>galeria/</b>.</div>'; }},800);
 }
-
-function openLightbox(src){
-  const box = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  img.src = src;
-  box.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox(){
-  document.getElementById('lightbox').style.display = 'none';
-  document.getElementById('lightbox-img').src = '';
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('contextmenu', function(e){
-  if(e.target.tagName === 'IMG') e.preventDefault();
-});
-
-document.addEventListener('dragstart', function(e){
-  if(e.target.tagName === 'IMG') e.preventDefault();
-});
-
+function openLightbox(src,event){if(event) event.stopPropagation(); const box=document.getElementById('lightbox'); const img=document.getElementById('lightbox-img'); img.src=src; box.classList.add('open'); document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightbox-img').src=''; document.body.style.overflow='';}
+document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG') e.preventDefault();});
+document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG') e.preventDefault();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closeLightbox();});
 buildGallery();
 </script>
-
 </body>
 </html>

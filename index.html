@@ -692,7 +692,7 @@
 
         <div class="services-grid">
           <article class="card service">
-            <img class="service-image" src="projekty-cad-3d.jpg" alt="Projekty CAD 3D" />
+            <img class="service-image" src="images/projekty-cad-3d.jpg" alt="Projekty CAD 3D" />
             <div class="service-body">
               <div class="service-num">01</div>
               <h3>Projekty CAD 3D</h3>
@@ -701,7 +701,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="projekty-konstrukcji.jpg" alt="Projekty konstrukcji" />
+            <img class="service-image" src="images/projekty-konstrukcji.jpg" alt="Projekty konstrukcji" />
             <div class="service-body">
               <div class="service-num">02</div>
               <h3>Projekty konstrukcji</h3>
@@ -710,7 +710,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="modyfikacje.jpg" alt="Modyfikacje maszyn" />
+            <img class="service-image" src="images/modyfikacje.jpg" alt="Modyfikacje maszyn" />
             <div class="service-body">
               <div class="service-num">03</div>
               <h3>Modyfikacje</h3>
@@ -719,7 +719,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="dokumentacja-2d.jpg" alt="Dokumentacja 2D" />
+            <img class="service-image" src="images/dokumentacja-2d.jpg" alt="Dokumentacja 2D" />
             <div class="service-body">
               <div class="service-num">04</div>
               <h3>Dokumentacja 2D</h3>
@@ -728,7 +728,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="odtwarzanie-czesci.jpg" alt="Odtwarzanie istniejących urządzeń i części" />
+            <img class="service-image" src="images/odtwarzanie-czesci.jpg" alt="Odtwarzanie istniejących urządzeń i części" />
             <div class="service-body">
               <div class="service-num">05</div>
               <h3>Odtwarzanie istniejących urządzeń i części</h3>
@@ -737,7 +737,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="druk-3d.jpg" alt="Druk 3D" />
+            <img class="service-image" src="images/druk-3d.jpg" alt="Druk 3D" />
             <div class="service-body">
               <div class="service-num">06</div>
               <h3>Druk 3D</h3>
@@ -746,7 +746,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="rendering-wizualizacja.jpg" alt="Rendering i wizualizacja" />
+            <img class="service-image" src="images/rendering-wizualizacja.jpg" alt="Rendering i wizualizacja" />
             <div class="service-body">
               <div class="service-num">07</div>
               <h3>Rendering / Wizualizacja</h3>
@@ -755,7 +755,7 @@
           </article>
 
           <article class="card service">
-            <img class="service-image" src="projekty-mebli.jpg" alt="Projekty mebli" />
+            <img class="service-image" src="images/projekty-mebli.jpg" alt="Projekty mebli" />
             <div class="service-body">
               <div class="service-num">08</div>
               <h3>Projekty mebli</h3>
@@ -860,7 +860,98 @@
         </article>
       </div>
     </section>
+      <section id="galeria">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="mini-label">Galeria</div>
+            <h2>Wybrane projekty</h2>
+          </div>
+          <p>Przykładowe wizualizacje i projekty CAD wykonane w ramach realizacji.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <img src="projekty-cad-3d.jpg" alt="Projekt CAD 3D" onclick="openLightbox(this.src)">
+          <img src="projekty-konstrukcji.jpg" alt="Projekt konstrukcji" onclick="openLightbox(this.src)">
+          <img src="modyfikacje.jpg" alt="Modyfikacje maszyn" onclick="openLightbox(this.src)">
+          <img src="dokumentacja-2d.jpg" alt="Dokumentacja 2D" onclick="openLightbox(this.src)">
+          <img src="odtwarzanie-czesci.jpg" alt="Odtwarzanie części" onclick="openLightbox(this.src)">
+          <img src="rendering-wizualizacja.jpg" alt="Rendering" onclick="openLightbox(this.src)">
+          <img src="projekty-mebli.jpg" alt="Projekt mebli" onclick="openLightbox(this.src)">
+        </div>
+      </div>
+
+      <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+    </section>
+
   </main>
+
+  <script>
+    function openLightbox(src){
+      const box=document.getElementById('lightbox');
+      const img=document.getElementById('lightbox-img');
+      img.src=src;
+      box.style.display='flex';
+    }
+
+    function closeLightbox(){
+      document.getElementById('lightbox').style.display='none';
+    }
+  </script>
+
+  <style>
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:20px;
+  }
+
+  .gallery-grid img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:16px;
+    cursor:pointer;
+    transition:.25s;
+  }
+
+  .gallery-grid img:hover{
+    transform:scale(1.03);
+  }
+
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+  }
+
+  .lightbox img{
+    max-width:90%;
+    max-height:85%;
+    border-radius:10px;
+  }
+
+  @media (max-width:900px){
+    .gallery-grid{
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
+  @media (max-width:600px){
+    .gallery-grid{
+      grid-template-columns:1fr;
+    }
+  }
+
+  </style>
 
   <footer class="footer">
     <div class="container">

@@ -90,9 +90,7 @@ color:var(--text);
 
 nav a:hover{background:#eee}
 
-.hero{
-padding:60px 0 40px;
-}
+.hero{padding:60px 0 40px}
 
 .hero-grid{
 display:grid;
@@ -126,22 +124,11 @@ cursor:pointer;
 text-decoration:none;
 }
 
-.btn-primary{
-background:var(--accent);
-color:#fff;
-}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
 
-.btn-primary:hover{
-background:var(--accent-dark);
-}
-
-section{
-padding:30px 0;
-}
-
-.section-title{
-margin-bottom:20px;
-}
+section{padding:30px 0}
+.section-title{margin-bottom:20px}
 
 .services{
 display:grid;
@@ -149,10 +136,7 @@ grid-template-columns:repeat(2,1fr);
 gap:18px;
 }
 
-.service{
-padding:0;
-overflow:hidden;
-}
+.service{padding:0;overflow:hidden}
 
 .service img{
 height:220px;
@@ -163,13 +147,8 @@ cursor:pointer;
 transition:.25s;
 }
 
-.service img:hover{
-transform:scale(1.02);
-}
-
-.service-body{
-padding:22px;
-}
+.service img:hover{transform:scale(1.02)}
+.service-body{padding:22px}
 
 .gallery-header{
 display:flex;
@@ -208,16 +187,16 @@ object-fit:cover;
 transition:.25s;
 }
 
-.gallery-item:hover img{
-transform:scale(1.04);
-}
+.gallery-item:hover img{transform:scale(1.04)}
 
-.gallery-empty{
+.gallery-empty,
+.gallery-loading{
 padding:24px;
 border:1px dashed var(--line);
 border-radius:14px;
 color:var(--muted);
 background:rgba(255,255,255,.55);
+grid-column:1 / -1;
 }
 
 .lightbox{
@@ -238,9 +217,7 @@ max-height:85%;
 border-radius:10px;
 }
 
-footer{
-padding:40px 0;
-}
+footer{padding:40px 0}
 
 .footer-card{
 display:grid;
@@ -249,24 +226,13 @@ gap:20px;
 }
 
 @media(max-width:900px){
-.hero-grid,.services,.gallery,.footer-card{
-grid-template-columns:1fr;
-}
-.topbar{
-flex-direction:column;
-padding:12px 0;
-}
-nav{
-justify-content:center;
-}
-.gallery-header{
-flex-direction:column;
-align-items:flex-start;
-}
+.hero-grid,.services,.gallery,.footer-card{grid-template-columns:1fr}
+.topbar{flex-direction:column;padding:12px 0}
+nav{justify-content:center}
+.gallery-header{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -284,7 +250,6 @@ align-items:flex-start;
 </header>
 
 <main>
-
 <section class="hero">
   <div class="container hero-grid">
     <div class="card">
@@ -309,7 +274,6 @@ align-items:flex-start;
 <section id="oferta">
   <div class="container">
     <h2 class="section-title">Usługi projektowe</h2>
-
     <div class="services">
       <div class="card service">
         <img src="projekty-cad-3d.jpg" alt="Projekty CAD 3D" onclick="openLightbox(this.src)" oncontextmenu="return false;" draggable="false">
@@ -371,7 +335,9 @@ align-items:flex-start;
       <p class="gallery-note">Przy każdym odświeżeniu strony pokazywany jest losowy zestaw zdjęć z folderu <b>galeria/</b>.</p>
     </div>
 
-    <div class="gallery" id="gallery"></div>
+    <div class="gallery" id="gallery">
+      <div class="gallery-loading">Ładowanie galerii…</div>
+    </div>
   </div>
 
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -389,7 +355,6 @@ align-items:flex-start;
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>
@@ -408,100 +373,9 @@ align-items:flex-start;
 </footer>
 
 <script>
-const galleryImages = [
-  "galeria/10osi (2)_Kamera_Kamera.png",
-  "galeria/10osi_render.png",
-  "galeria/11_edited.jpg",
-  "galeria/20190103_082512.jpg",
-  "galeria/20190221_115918.jpg",
-  "galeria/3 osie + oś uchylna.png",
-  "galeria/5-osi.JPG",
-  "galeria/5.JPG",
-  "galeria/5_osi.JPG",
-  "galeria/BIURKO.png",
-  "galeria/BIURKO_TECH_RENDER 2.png",
-  "galeria/BOSTON 5.png",
-  "galeria/B_RENDER 2.png",
-  "galeria/Budżetowa frezarka desktopowa.JPG",
-  "galeria/Centrum co nestingu z auto.JPG",
-  "galeria/Centrum co nestingu.JPG",
-  "galeria/DSC_0007.JPG",
-  "galeria/DSC_0057.JPG",
-  "galeria/DSC_0110.JPG",
-  "galeria/DSC_1512.JPG",
-  "galeria/FREZARKA DO ZLEWÓW.JPG",
-  "galeria/Gryt_visualize_Kamera_Kamera1.png",
-  "galeria/Głowica oscylacyjna tnąca - cutter.JPG",
-  "galeria/IMAG0053.jpg",
-  "galeria/IMG-20240302-WA0002.jpg",
-  "galeria/IMG_20190719_132021_1.jpg",
-  "galeria/IMG_20190828_090926.jpg",
-  "galeria/IMG_20190906_111643.jpg",
-  "galeria/IMG_20220622_152438.jpg",
-  "galeria/IMG_20220629_151012.jpg",
-  "galeria/INŻYNIERIA WSTECZNA.jpg",
-  "galeria/KAWOWY_G.7.jpg",
-  "galeria/Klejenie luster i montaż stolików.JPG",
-  "galeria/KuchniaNowa8 (2)_Kamera_Kamera3.jpg",
-  "galeria/L.png",
-  "galeria/LINIA_5000.png",
-  "galeria/LOZECZKO_1.5.jpg",
-  "galeria/LOZECZKO_2.4.jpg",
-  "galeria/Laser FIBER 4kW.JPG",
-  "galeria/Laser co2.png",
-  "galeria/LaserEcov3_VISUALIZE (2).jpg",
-  "galeria/Linia do pakietowania.JPG",
-  "galeria/Linia do pakowania mebli tapicerowanych.JPG",
-  "galeria/Linia wiercąca.JPG",
-  "galeria/MAK_1.JPG",
-  "galeria/MODUŁ WCISKANIA USZCZELKI.JPG",
-  "galeria/Mak_1.png",
-  "galeria/Meble tapicerowane.jpg",
-  "galeria/PANAMA.12.png",
-  "galeria/POSTUMENTY ROBOTÓW.JPG",
-  "galeria/PROJEKT - DTF2922AR - Visualize (2).png",
-  "galeria/PRZENOSNIK_KOLKA_1920x1080_MAX.JPG",
-  "galeria/PRZENOSNIK_ROLKOWY_PNG.png",
-  "galeria/PRZENOSNIK_ROLK_1920x1080_MAX.JPG",
-  "galeria/Ploter frezujący 3 osiowy.JPG",
-  "galeria/Powrót z okleiniarki.JPG",
-  "galeria/Prasa do klejenia na zimno.png",
-  "galeria/R1.JPG",
-  "galeria/R1_bez_tla.png",
-  "galeria/ROLKOWY5000.png",
-  "galeria/STANOWISKA.png",
-  "galeria/STANOWISKO OBRÓBKI DRZWI.JPG",
-  "galeria/STOLIK_RENDER 2.png",
-  "galeria/STOL_DO_PAKOWANIA.JPG",
-  "galeria/STOL_V.jpg",
-  "galeria/SZAFA_1_RENDER_2_Kamera_Kamera 3.png",
-  "galeria/SZAFKA_STOPKI.jpg",
-  "galeria/SZAFKA_STOPKI_OST.png",
-  "galeria/Stanowisko pakowania.JPG",
-  "galeria/Stół krzyżowy_edited.jpg",
-  "galeria/Tor robota.JPG",
-  "galeria/Untitled2.jpg",
-  "galeria/Widok 1_2.jpg",
-  "galeria/Widok 3_1.jpg",
-  "galeria/Widok 3_1_edited.jpg",
-  "galeria/Widok 3_2.jpg",
-  "galeria/Widok 4_1.jpg",
-  "galeria/Widok 4_1_edited.jpg",
-  "galeria/Widok 5_1.jpg",
-  "galeria/Widok 6_1.jpg",
-  "galeria/Zgrzewarka.JPG",
-  "galeria/Zlecenie_nr_4.jpg",
-  "galeria/feba_1.png",
-  "galeria/laser.JPG",
-  "galeria/linia do luster.JPG",
-  "galeria/r1-s.JPG",
-  "galeria/r5_4.JPG",
-  "galeria/render.JPG",
-  "galeria/render.png",
-  "galeria/tecad baner.JPG",
-  "galeria/wznoszący_tecad.JPG"
-];
-
+const repoOwner = 'bobek667';
+const repoName = 'tecad.github.io';
+const galleryFolder = 'galeria';
 const galleryCount = 12;
 
 function shuffle(array){
@@ -513,46 +387,61 @@ function shuffle(array){
   return copy;
 }
 
-function encodePath(path){
-  return path.split('/').map(part => encodeURIComponent(part)).join('/');
+async function loadGalleryFiles(){
+  const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${galleryFolder}`;
+  const response = await fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github+json' } });
+
+  if(!response.ok){
+    throw new Error('Nie udało się pobrać listy plików galerii.');
+  }
+
+  const files = await response.json();
+  return files.filter(file => {
+    const name = file.name.toLowerCase();
+    return file.type === 'file' && (name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.png') || name.endsWith('.webp'));
+  });
 }
 
-function buildGallery(){
+async function buildGallery(){
   const gallery = document.getElementById('gallery');
   if(!gallery) return;
 
-  gallery.innerHTML = '';
+  gallery.innerHTML = '<div class="gallery-loading">Ładowanie galerii…</div>';
 
-  if(!galleryImages.length){
-    gallery.innerHTML = '<div class="gallery-empty">Brak zdjęć w galerii.</div>';
-    return;
+  try {
+    const files = await loadGalleryFiles();
+
+    if(!files.length){
+      gallery.innerHTML = '<div class="gallery-empty">Brak zdjęć w folderze <b>galeria/</b>.</div>';
+      return;
+    }
+
+    const selected = shuffle(files).slice(0, galleryCount);
+    gallery.innerHTML = '';
+
+    selected.forEach((file, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'gallery-item';
+
+      const img = document.createElement('img');
+      img.src = file.download_url;
+      img.alt = 'Galeria projektu ' + (index + 1);
+      img.draggable = false;
+      img.oncontextmenu = () => false;
+      img.onclick = () => openLightbox(file.download_url);
+
+      wrapper.appendChild(img);
+      gallery.appendChild(wrapper);
+    });
+  } catch (error) {
+    gallery.innerHTML = '<div class="gallery-empty">Nie udało się załadować galerii. Sprawdź połączenie albo odśwież stronę.</div>';
   }
-
-  const randomImages = shuffle(galleryImages).slice(0, galleryCount);
-
-  randomImages.forEach((src, index) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'gallery-item';
-
-    const img = document.createElement('img');
-    img.src = encodePath(src);
-    img.alt = 'Galeria projektu ' + (index + 1);
-    img.draggable = false;
-    img.oncontextmenu = () => false;
-    img.onclick = () => openLightbox(src);
-    img.onerror = () => {
-      wrapper.remove();
-    };
-
-    wrapper.appendChild(img);
-    gallery.appendChild(wrapper);
-  });
 }
 
 function openLightbox(src){
   const box = document.getElementById('lightbox');
   const img = document.getElementById('lightbox-img');
-  img.src = encodePath(src);
+  img.src = src;
   box.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
@@ -564,15 +453,11 @@ function closeLightbox(){
 }
 
 document.addEventListener('contextmenu', function(e){
-  if(e.target.tagName === 'IMG'){
-    e.preventDefault();
-  }
+  if(e.target.tagName === 'IMG') e.preventDefault();
 });
 
 document.addEventListener('dragstart', function(e){
-  if(e.target.tagName === 'IMG'){
-    e.preventDefault();
-  }
+  if(e.target.tagName === 'IMG') e.preventDefault();
 });
 
 buildGallery();

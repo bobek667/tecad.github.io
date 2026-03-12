@@ -1,973 +1,363 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TeCAD | Biuro projektowe | Projektowanie maszyn i urządzeń | Rydułtowy</title>
-  <meta name="description" content="Biuro projektowe TeCAD. Projekty maszyn przemysłowych, linii produkcyjnych oraz stanowisk zrobotyzowanych." />
-  <style>
-    :root {
-      --bg: #efe9df;
-      --bg-soft: #f7f3ec;
-      --surface: #ffffff;
-      --surface-alt: #f9f6f1;
-      --text: #1f1f1f;
-      --muted: #66615b;
-      --line: #ddd1c1;
-      --primary: #2b2b2b;
-      --accent: #b18a55;
-      --accent-dark: #8f6d40;
-      --shadow: 0 14px 34px rgba(0, 0, 0, .08);
-      --radius: 22px;
-      --max: 1180px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(177,138,85,.08), transparent 28%),
-        linear-gradient(180deg, #f5f1ea 0%, #eee6db 100%);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, .82);
-      border-bottom: 1px solid rgba(221, 209, 193, .92);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      min-height: 88px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      min-width: 0;
-    }
-
-    .brand-logo {
-      width: 170px;
-      max-width: 42vw;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .brand-fallback {
-      width: 68px;
-      height: 68px;
-      border-radius: 18px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, var(--primary), #555);
-      color: #fff;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      box-shadow: var(--shadow);
-    }
-
-    .brand-copy {
-      min-width: 0;
-    }
-
-    .brand-copy h1 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.1;
-      letter-spacing: .02em;
-    }
-
-    .brand-copy p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav a {
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--primary);
-      transition: .2s ease;
-    }
-
-    .nav a:hover,
-    .nav a:focus-visible {
-      background: rgba(177,138,85,.12);
-      color: var(--accent-dark);
-      outline: none;
-    }
-
-    .hero {
-      padding: 70px 0 40px;
-    }
-
-    .hero-wrap {
-      display: grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-main {
-      padding: 44px;
-      background:
-        radial-gradient(circle at top right, rgba(177,138,85,.18), transparent 30%),
-        linear-gradient(180deg, #fff 0%, #f9f5ef 100%);
-    }
-
-    .eyebrow,
-    .mini-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(177,138,85,.1);
-      color: var(--accent-dark);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .hero-main h2 {
-      margin: 22px 0 18px;
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.02;
-      letter-spacing: -.04em;
-    }
-
-    .hero-main p {
-      margin: 0 0 26px;
-      max-width: 710px;
-      color: #4a4743;
-      font-size: 18px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .btn {
-      min-height: 50px;
-      padding: 0 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: .2s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-dark);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border-color: var(--line);
-      color: var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-soft);
-    }
-
-    .hero-side {
-      padding: 30px;
-      color: #fff;
-      background:
-        linear-gradient(180deg, rgba(33,33,33,.96), rgba(22,22,22,.98)),
-        linear-gradient(135deg, rgba(177,138,85,.22), transparent 48%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-side::after {
-      content: "";
-      position: absolute;
-      right: -50px;
-      bottom: -50px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: rgba(177,138,85,.16);
-    }
-
-    .hero-side .mini-label {
-      margin-bottom: 18px;
-      background: rgba(255,255,255,.08);
-      color: #ead7bc;
-    }
-
-    .hero-side h3 {
-      margin: 0 0 18px;
-      font-size: 30px;
-      line-height: 1.12;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-side ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-side li {
-      position: relative;
-      padding-left: 20px;
-      color: rgba(255,255,255,.92);
-    }
-
-    .hero-side li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: .6em;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    section {
-      padding: 22px 0 44px;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      gap: 22px;
-      align-items: end;
-      margin-bottom: 22px;
-    }
-
-    .section-heading h2 {
-      margin: 10px 0 0;
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: -.03em;
-      line-height: 1.05;
-    }
-
-    .section-heading p {
-      margin: 0;
-      max-width: 560px;
-      color: var(--muted);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .service {
-      padding: 0;
-      overflow: hidden;
-      background: linear-gradient(180deg, #fff 0%, #fcfaf6 100%);
-      transition: .2s ease;
-    }
-
-    .service:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 36px rgba(0,0,0,.1);
-    }
-
-    .service-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: #e8e0d4;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .service-body {
-      padding: 26px;
-    }
-
-    .service-num {
-      width: 36px;
-      height: 36px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      background: rgba(177,138,85,.12);
-      color: var(--accent-dark);
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    .service h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      line-height: 1.2;
-    }
-
-    .service p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .88fr 1.12fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .contact-stack {
-      display: grid;
-      gap: 18px;
-    }
-
-    .contact-card,
-    .form-card,
-    .experience-card,
-    .footer-card {
-      padding: 28px;
-    }
-
-    .contact-label {
-      margin-bottom: 8px;
-      color: var(--accent-dark);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .contact-value {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1.2;
-    }
-
-    .contact-note {
-      margin: 10px 0 0;
-      color: var(--muted);
-    }
-
-    .contact-link {
-      color: var(--accent-dark);
-      word-break: break-word;
-    }
-
-    .form-card {
-      background: linear-gradient(180deg, #fff 0%, #f8f3ec 100%);
-    }
-
-    .form-card h3 {
-      margin: 12px 0 18px;
-      font-size: 28px;
-      line-height: 1.1;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    label {
-      display: grid;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      transition: .2s ease;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(177,138,85,.12);
-    }
-
-    textarea {
-      min-height: 170px;
-      resize: vertical;
-    }
-
-    .form-note {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .experience-card {
-      color: #fff;
-      background: linear-gradient(180deg, #2b2b2b 0%, #191919 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .experience-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -90px -90px auto;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: rgba(177,138,85,.12);
-    }
-
-    .experience-card .mini-label {
-      background: rgba(255,255,255,.08);
-      color: #ead7bc;
-    }
-
-    .experience-card h2 {
-      margin: 14px 0 10px;
-      font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.06;
-      position: relative;
-      z-index: 1;
-    }
-
-    .experience-card p {
-      margin: 0;
-      color: rgba(255,255,255,.84);
-      position: relative;
-      z-index: 1;
-    }
-
-    .experience-grid {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .experience-item {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .experience-bullet {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex: 0 0 auto;
-    }
-
-    .footer {
-      padding: 0 0 34px;
-    }
-
-    .footer-card {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-      background: linear-gradient(180deg, #fff 0%, #f7f2eb 100%);
-    }
-
-    .footer-card h3 {
-      margin: 12px 0 10px;
-      font-size: 28px;
-      line-height: 1.1;
-    }
-
-    .footer-card p {
-      margin: 0 0 10px;
-      color: #44403a;
-    }
-
-    .copyright {
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 980px) {
-      .hero-wrap,
-      .contact-grid,
-      .footer-card,
-      .services-grid,
-      .experience-grid,
-      .field-row {
-        grid-template-columns: 1fr;
-      }
-
-      .section-heading {
-        flex-direction: column;
-        align-items: start;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .topbar-inner {
-        min-height: auto;
-        padding: 14px 0;
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .brand {
-        justify-content: center;
-      }
-
-      .brand-copy {
-        display: none;
-      }
-
-      .nav {
-        justify-content: center;
-      }
-
-      .hero {
-        padding-top: 36px;
-      }
-
-      .hero-main,
-      .hero-side,
-      .service,
-      .contact-card,
-      .form-card,
-      .experience-card,
-      .footer-card {
-        padding: 22px;
-      }
-
-      .contact-value {
-        font-size: 22px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeCAD | Biuro projektowe | Projektowanie maszyn</title>
+<meta name="description" content="TeCAD - projekty CAD 3D, projektowanie maszyn, dokumentacja techniczna i konstrukcje przemysłowe.">
+
+<style>
+:root{
+--accent:#b18a55;
+--accent-dark:#8f6d40;
+--bg:#f4efe7;
+--surface:#ffffff;
+--text:#222;
+--muted:#6c655d;
+--line:#ddd1c1;
+--shadow:0 12px 30px rgba(0,0,0,.08);
+--radius:20px;
+--max:1180px;
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:linear-gradient(180deg,#f5f1ea,#eee6db);
+color:var(--text);
+line-height:1.6;
+}
+
+.container{
+width:min(var(--max),calc(100% - 32px));
+margin:auto;
+}
+
+img{max-width:100%;display:block}
+
+header{
+position:sticky;
+top:0;
+background:rgba(255,255,255,.9);
+backdrop-filter:blur(8px);
+border-bottom:1px solid var(--line);
+z-index:100;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:80px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.brand img{width:160px}
+
+nav a{
+margin-left:10px;
+padding:10px 16px;
+border-radius:999px;
+font-weight:bold;
+text-transform:uppercase;
+font-size:13px;
+letter-spacing:.08em;
+}
+
+nav a:hover{background:#eee}
+
+.hero{
+padding:60px 0 40px;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:24px;
+}
+
+.card{
+background:var(--surface);
+border-radius:var(--radius);
+border:1px solid var(--line);
+box-shadow:var(--shadow);
+padding:34px;
+}
+
+.hero h1{
+font-size:44px;
+line-height:1.05;
+margin:10px 0 16px;
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:12px 22px;
+border-radius:999px;
+font-weight:bold;
+border:none;
+cursor:pointer;
+}
+
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+
+section{padding:30px 0}
+
+.section-title{margin-bottom:20px}
+
+.services{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
+
+.service img{
+height:220px;
+object-fit:cover;
+border-bottom:1px solid var(--line);
+}
+
+.service-body{padding:22px}
+
+.gallery{
+margin-top:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+}
+
+.gallery img{
+height:240px;
+object-fit:cover;
+border-radius:14px;
+cursor:pointer;
+transition:.25s;
+}
+
+.gallery img:hover{transform:scale(1.03)}
+
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:2000;
+padding:20px;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:85%;
+border-radius:10px;
+}
+
+footer{padding:40px 0}
+
+.footer-card{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+@media(max-width:900px){
+.hero-grid,.services,.gallery,.footer-card{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#start" aria-label="TeCAD - strona główna">
-        <img class="brand-logo" src="NOWE_LOGO_BEZ_TLA.png" alt="TeCAD logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="brand-fallback">TC</div>
-        <div class="brand-copy">
-          <h1>TeCAD</h1>
-          <p>Biuro projektowe</p>
-        </div>
-      </a>
 
-      <nav class="nav" aria-label="Nawigacja główna">
-        <a href="#oferta">Oferta</a>
-        <a href="#projekty">Projekty maszyn</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-    </div>
-  </header>
+<header>
+<div class="container topbar">
+<div class="brand">
+<img src="NOWE_LOGO_BEZ_TLA.png" alt="TeCAD logo">
+</div>
+<nav>
+<a href="#oferta">Oferta</a>
+<a href="#projekty">Projekty</a>
+<a href="#galeria">Galeria</a>
+<a href="#kontakt">Kontakt</a>
+</nav>
+</div>
+</header>
 
-  <main id="start">
-    <section class="hero">
-      <div class="container hero-wrap">
-        <article class="card hero-main">
-          <div class="eyebrow">Projektowanie maszyn i urządzeń</div>
-          <h2>Projekty maszyn przemysłowych, linii produkcyjnych oraz stanowisk zrobotyzowanych.</h2>
-          <p>
-            TeCAD to biuro projektowe z Rydułtów specjalizujące się w projektach CAD 3D,
-            dokumentacji technicznej, inżynierii wstecznej oraz projektach konstrukcji i maszyn.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#kontakt">Skontaktuj się</a>
-            <a class="btn btn-secondary" href="#oferta">Zobacz ofertę</a>
-          </div>
-        </article>
+<main>
 
-        <aside class="card hero-side" aria-label="Zakres działalności">
-          <div class="mini-label">Zakres działalności</div>
-          <h3>Projektowanie dla przemysłu i produkcji</h3>
-          <ul>
-            <li>Maszyny i urządzenia specjalne</li>
-            <li>Linie produkcyjne i obróbcze</li>
-            <li>Stanowiska zrobotyzowane</li>
-            <li>Konstrukcje stalowe, aluminiowe i drewniane</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
+<section class="hero">
+<div class="container hero-grid">
+<div class="card">
+<div>Projektowanie maszyn i urządzeń</div>
+<h1>Projekty maszyn przemysłowych i linii produkcyjnych</h1>
+<p>Biuro projektowe TeCAD z Rydułtów specjalizujące się w projektowaniu CAD 3D, dokumentacji technicznej oraz konstrukcjach przemysłowych.</p>
+<button class="btn btn-primary">Skontaktuj się</button>
+</div>
 
-    <section id="oferta">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="mini-label">Oferta</div>
-            <h2>Usługi projektowe</h2>
-          </div>
-          <p>Zakres usług odtworzony z poprzedniej strony: projekty 3D, dokumentacja, modyfikacje, reverse engineering, druk 3D, rendering i projekty mebli.</p>
-        </div>
+<div class="card">
+<h3>Zakres działalności</h3>
+<ul>
+<li>Maszyny i urządzenia specjalne</li>
+<li>Linie produkcyjne</li>
+<li>Stanowiska zrobotyzowane</li>
+<li>Konstrukcje stalowe</li>
+</ul>
+</div>
+</div>
+</section>
 
-        <div class="services-grid">
-          <article class="card service">
-            <img class="service-image" src="projekty-cad-3d.jpg" alt="Projekty CAD 3D" />
-            <div class="service-body">
-              <div class="service-num">01</div>
-              <h3>Projekty CAD 3D</h3>
-              <p>Opracowanie koncepcji i wykonanie projektów nowych maszyn i urządzeń.</p>
-            </div>
-          </article>
+<section id="oferta">
+<div class="container">
+<h2 class="section-title">Usługi projektowe</h2>
 
-          <article class="card service">
-            <img class="service-image" src="projekty-konstrukcji.jpg" alt="Projekty konstrukcji" />
-            <div class="service-body">
-              <div class="service-num">02</div>
-              <h3>Projekty konstrukcji</h3>
-              <p>Projekty konstrukcji nośnych, zadaszeń, wiat oraz mebli stalowych. Konstrukcje stalowe, aluminiowe i drewniane.</p>
-            </div>
-          </article>
+<div class="services">
 
-          <article class="card service">
-            <img class="service-image" src="modyfikacje.jpg" alt="Modyfikacje maszyn" />
-            <div class="service-body">
-              <div class="service-num">03</div>
-              <h3>Modyfikacje</h3>
-              <p>Usprawnienia i modyfikacje istniejących maszyn i urządzeń w celu poprawy wydajności oraz automatyzacji.</p>
-            </div>
-          </article>
+<div class="card service">
+<img src="projekty-cad-3d.jpg" onclick="openLightbox(this.src)">
+<div class="service-body">
+<h3>Projekty CAD 3D</h3>
+<p>Projektowanie nowych maszyn i urządzeń.</p>
+</div>
+</div>
 
-          <article class="card service">
-            <img class="service-image" src="dokumentacja-2d.jpg" alt="Dokumentacja 2D" />
-            <div class="service-body">
-              <div class="service-num">04</div>
-              <h3>Dokumentacja 2D</h3>
-              <p>Wykonywanie dokumentacji wykonawczej 2D oraz digitalizacja istniejących urządzeń i części.</p>
-            </div>
-          </article>
+<div class="card service">
+<img src="projekty-konstrukcji.jpg" onclick="openLightbox(this.src)">
+<div class="service-body">
+<h3>Projekty konstrukcji</h3>
+<p>Konstrukcje stalowe i projekty techniczne.</p>
+</div>
+</div>
 
-          <article class="card service">
-            <img class="service-image" src="odtwarzanie-czesci.jpg" alt="Odtwarzanie istniejących urządzeń i części" />
-            <div class="service-body">
-              <div class="service-num">05</div>
-              <h3>Odtwarzanie istniejących urządzeń i części</h3>
-              <p>Na podstawie pomiarów i skanów odtwarzanie narzędzi, elementów maszyn oraz całych układów. Inżynieria wsteczna.</p>
-            </div>
-          </article>
+<div class="card service">
+<img src="modyfikacje.jpg" onclick="openLightbox(this.src)">
+<div class="service-body">
+<h3>Modyfikacje</h3>
+<p>Modernizacja i usprawnianie maszyn.</p>
+</div>
+</div>
 
-          <article class="card service">
-            <img class="service-image" src="druk-3d.jpg" alt="Druk 3D" />
-            <div class="service-body">
-              <div class="service-num">06</div>
-              <h3>Druk 3D</h3>
-              <p>Wykonywanie prototypów poglądowych elementów i części maszyn o maksymalnym polu roboczym 420 × 420 × 500 mm.</p>
-            </div>
-          </article>
+<div class="card service">
+<img src="dokumentacja-2d.jpg" onclick="openLightbox(this.src)">
+<div class="service-body">
+<h3>Dokumentacja 2D</h3>
+<p>Dokumentacja wykonawcza i techniczna.</p>
+</div>
+</div>
 
-          <article class="card service">
-            <img class="service-image" src="rendering-wizualizacja.jpg" alt="Rendering i wizualizacja" />
-            <div class="service-body">
-              <div class="service-num">07</div>
-              <h3>Rendering / Wizualizacja</h3>
-              <p>Fotorealistyczne prezentacje maszyn, urządzeń i detali w pełnych szczegółach i kolorach.</p>
-            </div>
-          </article>
+</div>
+</div>
+</section>
 
-          <article class="card service">
-            <img class="service-image" src="projekty-mebli.jpg" alt="Projekty mebli" />
-            <div class="service-body">
-              <div class="service-num">08</div>
-              <h3>Projekty mebli</h3>
-              <p>Projekty mebli stalowych, skrzyniowych i innych realizacji użytkowych wykonywanych indywidualnie.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="galeria">
+<div class="container">
+<h2 class="section-title">Galeria projektów</h2>
 
-    <section id="kontakt">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="mini-label">Kontakt</div>
-            <h2>Skontaktuj się z TeCAD</h2>
-          </div>
-          <p>Telefon, e-mail, godziny pracy i formularz kontaktowy zebrane w jednej sekcji, tak jak na poprzedniej stronie.</p>
-        </div>
+<div class="gallery" id="gallery"></div>
 
-        <div class="contact-grid">
-          <div class="contact-stack">
-            <article class="card contact-card">
-              <div class="contact-label">Zadzwoń</div>
-              <p class="contact-value"><a class="contact-link" href="tel:+48501301556">+48 501 301 556</a></p>
-              <p class="contact-note">Kontakt telefoniczny w godzinach pracy biura.</p>
-            </article>
+</div>
 
-            <article class="card contact-card">
-              <div class="contact-label">Napisz</div>
-              <p class="contact-value"><a class="contact-link" href="mailto:biuro@tecad.pl">biuro@tecad.pl</a></p>
-              <p class="contact-note">Zapytania projektowe, wyceny i współpraca.</p>
-            </article>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
 
-            <article class="card contact-card">
-              <div class="contact-label">Godziny otwarcia</div>
-              <p class="contact-value">Pon - Pią: 8:00 - 16:00</p>
-              <p class="contact-note">Możliwy kontakt mailowy również poza standardowymi godzinami.</p>
-            </article>
-          </div>
+</section>
 
-          <article class="card form-card">
-            <div class="mini-label">Formularz kontaktowy</div>
-            <h3>Napisz wiadomość</h3>
-            <form action="mailto:biuro@tecad.pl" method="post" enctype="text/plain">
-              <div class="field-row">
-                <label>
-                  Imię i nazwisko
-                  <input type="text" name="imie_nazwisko" placeholder="Twoje imię i nazwisko" required />
-                </label>
-                <label>
-                  Adres e-mail
-                  <input type="email" name="email" placeholder="twoj@email.pl" required />
-                </label>
-              </div>
+<section id="kontakt">
+<div class="container">
+<h2 class="section-title">Kontakt</h2>
 
-              <div class="field-row">
-                <label>
-                  Telefon
-                  <input type="tel" name="telefon" placeholder="Numer telefonu" />
-                </label>
-                <label>
-                  Temat
-                  <input type="text" name="temat" placeholder="Temat wiadomości" required />
-                </label>
-              </div>
+<div class="card">
+<p><b>Telefon:</b> +48 501 301 556</p>
+<p><b>Email:</b> biuro@tecad.pl</p>
+<p><b>Godziny:</b> Pon-Pt 8:00 - 16:00</p>
+</div>
 
-              <label>
-                Wiadomość
-                <textarea name="wiadomosc" placeholder="Opisz zakres projektu lub zapytania" required></textarea>
-              </label>
+</div>
+</section>
 
-              <button class="btn btn-primary" type="submit">Wyślij wiadomość</button>
-            </form>
-            <p class="form-note">Na GitHub Pages formularz bez backendu otwiera program pocztowy użytkownika. Żeby formularz wysyłał wiadomości automatycznie, trzeba podłączyć go do usługi typu Formspree lub FormSubmit.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+</main>
 
-    <section id="projekty">
-      <div class="container">
-        <article class="card experience-card">
-          <div class="mini-label">Doświadczenie w projektowaniu i produkcji maszyn</div>
-          <h2>Projekty specjalne</h2>
-          <p>Zakres doświadczenia odpowiada treściom z dotychczasowej witryny TeCAD.</p>
+<footer>
+<div class="container">
+<div class="card footer-card">
+<div>
+<h3>TeCAD Mariusz Bielski</h3>
+<p>ul. Wróblewskiego 25D<br>44-280 Rydułtowy</p>
+</div>
+<div>
+<p>NIP: 639-189-87-40<br>REGON: 520715446</p>
+<p>© 2025 TeCAD</p>
+</div>
+</div>
+</div>
+</footer>
 
-          <div class="experience-grid">
-            <div class="experience-item"><span class="experience-bullet"></span><span>Frezarki CNC 3 osiowe</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Frezarki CNC 5-cio osiowe</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Linie produkcyjne / obróbcze</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Stanowiska zrobotyzowane</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Lasery światłowodowe</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Przyrządy specjalne</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Tory jezdne dla robotów przemysłowych</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Manipulatory przemysłowe</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Konstrukcje stalowe</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Druk 3D</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Serwis maszyn CNC</span></div>
-            <div class="experience-item"><span class="experience-bullet"></span><span>Projekty mebli</span></div>
-          </div>
-        </article>
-      </div>
-    </section>
-      <section id="galeria">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="mini-label">Galeria</div>
-            <h2>Wybrane projekty</h2>
-          </div>
-          <p>Przykładowe wizualizacje i projekty CAD wykonane w ramach realizacji.</p>
-        </div>
+<script>
 
-        <div class="gallery-grid">
-          <img src="projekty-cad-3d.jpg" alt="Projekt CAD 3D" onclick="openLightbox(this.src)">
-          <img src="projekty-konstrukcji.jpg" alt="Projekt konstrukcji" onclick="openLightbox(this.src)">
-          <img src="modyfikacje.jpg" alt="Modyfikacje maszyn" onclick="openLightbox(this.src)">
-          <img src="dokumentacja-2d.jpg" alt="Dokumentacja 2D" onclick="openLightbox(this.src)">
-          <img src="odtwarzanie-czesci.jpg" alt="Odtwarzanie części" onclick="openLightbox(this.src)">
-          <img src="rendering-wizualizacja.jpg" alt="Rendering" onclick="openLightbox(this.src)">
-          <img src="projekty-mebli.jpg" alt="Projekt mebli" onclick="openLightbox(this.src)">
-        </div>
-      </div>
+/* --------------------------------------------------
+GALERIA LOSOWA
+-------------------------------------------------- */
 
-      <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="">
-      </div>
-    </section>
+const galleryImages=[
+"galeria/5.JPG"
+// dodawaj kolejne zdjęcia z folderu galeria np:
+// "galeria/1.jpg",
+// "galeria/2.jpg"
+];
 
-  </main>
+function shuffle(array){
+for(let i=array.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
+}
+return array;
+}
 
-  <script>
-    function openLightbox(src){
-      const box=document.getElementById('lightbox');
-      const img=document.getElementById('lightbox-img');
-      img.src=src;
-      box.style.display='flex';
-    }
+function buildGallery(){
+const gallery=document.getElementById("gallery");
+const randomImages=shuffle([...galleryImages]);
 
-    function closeLightbox(){
-      document.getElementById('lightbox').style.display='none';
-    }
-  </script>
+randomImages.forEach(src=>{
+const img=document.createElement("img");
+img.src=src;
+img.draggable=false;
+img.oncontextmenu=()=>false;
+img.onclick=()=>openLightbox(src);
+gallery.appendChild(img);
+});
+}
 
-  <style>
+/* --------------------------------------------------
+LIGHTBOX
+-------------------------------------------------- */
 
-  .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-    margin-top:20px;
-  }
+function openLightbox(src){
+const box=document.getElementById("lightbox");
+const img=document.getElementById("lightbox-img");
+img.src=src;
+box.style.display="flex";
+}
 
-  .gallery-grid img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:16px;
-    cursor:pointer;
-    transition:.25s;
-  }
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
 
-  .gallery-grid img:hover{
-    transform:scale(1.03);
-  }
+/* --------------------------------------------------
+START
+-------------------------------------------------- */
 
-  .lightbox{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.85);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:2000;
-  }
+buildGallery();
 
-  .lightbox img{
-    max-width:90%;
-    max-height:85%;
-    border-radius:10px;
-  }
+</script>
 
-  @media (max-width:900px){
-    .gallery-grid{
-      grid-template-columns:repeat(2,1fr);
-    }
-  }
-
-  @media (max-width:600px){
-    .gallery-grid{
-      grid-template-columns:1fr;
-    }
-  }
-
-  </style>
-
-  <footer class="footer">
-    <div class="container">
-      <article class="card footer-card">
-        <div>
-          <div class="mini-label">Adres</div>
-          <h3>TeCAD Mariusz Bielski</h3>
-          <p>ul. Wróblewskiego 25D<br />44-280 Rydułtowy</p>
-        </div>
-        <div>
-          <div class="mini-label">Dane firmy</div>
-          <p>NIP: 639-189-87-40<br />REGON: 520715446</p>
-          <p class="copyright">© 2025 by TeCAD.</p>
-        </div>
-      </article>
-    </div>
-  </footer>
 </body>
 </html>
